@@ -1,0 +1,22 @@
+<div class="book">
+  <img class="img-detail" src="{{cover}}" alt="{{title}}">
+  <h2>{{title}}</h2>
+  <div><b>Author:</b> {{author}}</div>
+  <div><b>Genre:</b> {{genre}}</div>
+  <div><b>Rating:</b> {{rating}}</div>
+  <div><a href="{{url}}">See book at Goodreads.</a></div>
+  <hr>
+  <div>
+    <h3>Reviews:</h3>
+    {{#if reviews }}
+      <ol>
+        {{#each reviews}}
+          <li>{{>review}}</li>
+        {{/each}}
+      </ol>
+    {{else}}
+      No reviews yet.
+    {{/if}}  
+  </div>
+  <a href="/books/{{id}}/edit">Edit</a>
+</div>
