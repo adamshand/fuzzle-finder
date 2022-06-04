@@ -1,3 +1,13 @@
+:root {
+  --dark: hsl(0, 0%, 14%);
+  --light: hsl(0, 0%, 96%);
+  --accent: goldenrod;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
   background-color: #eee;
 }
@@ -26,12 +36,12 @@ body {
   max-height: 100%;
   margin: auto;
 }
-.byebye {
+/* .byebye {
   opacity: 0;
-}
-.byebye:hover {
+} */
+/* .byebye:hover {
   transform: scale(0.2) !important;
-}
+} */
 .gallery {
   display: grid;
   grid-column-gap: 8px;
@@ -45,18 +55,18 @@ body {
   box-shadow: 0 0 16px #333;
   transition: all 1.5s ease;
 }
-.gallery img:hover {
+/* .gallery img:hover {
   box-shadow: 0 0 32px #333;
-}
+} */
 .gallery .content {
   padding: 4px;
 }
-.gallery .gallery-item {
+/* .gallery .gallery-item {
   transition: grid-row-start 300ms linear;
   transition: transform 300ms ease;
   transition: all 0.5s ease;
   cursor: pointer;
-}
+} */
 .gallery .gallery-item:hover {
   transform: scale(1.025);
 }
