@@ -5,19 +5,15 @@ const fs = require('fs')
 
 const { shuffleArray } = require('./lib.js')
 
-// ls | awk '{print "{ file: \047" $1"\047, title: \047"$1"\047, tags: [] },"}'
-
 //  fuzzles: [{ file: '1.jpeg', tags: [] }],
 const db = {
   fuzzles: [],
 }
 
-// db.fuzzles.push({ file: x })
-
 const files = fs.readdirSync('assets/images/')
 files.forEach(async (image) => {
   try {
-    const ext = image.split('.').slice(-1)[0].toLowerCase() // fails for a file called 'jpg' or 'png'
+    const ext = image.split('.').slice(-1)[0].toLowerCase()
     if (image.includes('.') && ['jpg', 'jpeg', 'png'].includes(ext)) {
       let data = await exifr.parse('assets/images/' + image, { iptc: true })
       db.fuzzles.push({ file: image, tags: data.Keywords })
@@ -30,6 +26,7 @@ files.forEach(async (image) => {
 
 router.get('/', (req, res) => {
   db.fuzzles = shuffleArray(db.fuzzles)
+  console.log(db.fuzzles)
   res.render('home', db)
 })
 

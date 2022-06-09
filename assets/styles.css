@@ -49,6 +49,9 @@ main {
   text-align: center;
   color: var(--dark);
 } 
+.gallery .tags a:hover {
+  text-decoration: solid;
+}
 .full {
   position: fixed;
   left: 0;
