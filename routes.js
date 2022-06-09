@@ -11,16 +11,16 @@ const db = {
 }
 
 const files = fs.readdirSync('assets/images/')
-files.forEach(async (image) => {
+files.forEach(async (file) => {
   try {
-    const ext = image.split('.').slice(-1)[0].toLowerCase()
-    if (image.includes('.') && ['jpg', 'jpeg', 'png'].includes(ext)) {
-      let data = await exifr.parse('assets/images/' + image, { iptc: true })
-      db.fuzzles.push({ file: image, tags: data.Keywords })
+    const ext = file.split('.').slice(-1)[0].toLowerCase()
+    if (file.includes('.') && ['jpg', 'jpeg', 'png'].includes(ext)) {
+      let data = await exifr.parse('assets/images/' + file, { iptc: true })
+      db.fuzzles.push({ file, tags: data.Keywords })
       //console.log(image, data.Keywords)
     }
   } catch (err) {
-    console.log({ image }, err)
+    console.log({ file }, err)
   }
 })
 
