@@ -15,13 +15,17 @@ const db = {
 // db.fuzzles.push({ file: x })
 
 const files = fs.readdirSync('assets/images/')
-// for (let x of files) {
-files.forEach((x) => {
-  exifr.parse('assets/images/' + x, { iptc: true }).then((data) => {
-    db.fuzzles.push({ file: x, tags: data.Keywords })
-    console.log(x, data.Keywords)
-    console.log(db)
-  })
+files.forEach(async (image) => {
+  try {
+    const ext = image.split('.').slice(-1)[0].toLowerCase() // fails for a file called 'jpg' or 'png'
+    if (image.includes('.') && ['jpg', 'jpeg', 'png'].includes(ext)) {
+      let data = await exifr.parse('assets/images/' + image, { iptc: true })
+      db.fuzzles.push({ file: image, tags: data.Keywords })
+      //console.log(image, data.Keywords)
+    }
+  } catch (err) {
+    console.log({ image }, err)
+  }
 })
 
 router.get('/', (req, res) => {
