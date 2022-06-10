@@ -3,21 +3,15 @@
 <head>
   <meta charset="utf-8">
   <title>Fuzzle Finder</title>
-  {{!-- <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css"> --}}
+  {{!-- <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css"> --}}
   <link rel="stylesheet" href="/assets/styles.css">
 </head>
 <body>
-  <header>
-    Fuzzle Finder v1
-    <nav> 
-      <a href="/name/">Name</a>
-      <a href="/species/">Species</a>
-      <a href="/breed/">Breed</a>
-      <a href="/prop/">Prop</a>
-    </nav>
-  </header>
+  {{>header}}
   <main>
     {{{body}}}
+  </main>
+  {{>footer}}
 <script src="/assets/masonary.js"></script>
 </body>
 </html>

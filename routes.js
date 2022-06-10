@@ -15,9 +15,20 @@ files.forEach(async (file) => {
   try {
     const ext = file.split('.').slice(-1)[0].toLowerCase()
     if (file.includes('.') && ['jpg', 'jpeg', 'png'].includes(ext)) {
-      let data = await exifr.parse('assets/images/' + file, { iptc: true })
-      db.fuzzles.push({ file, tags: data.Keywords })
-      //console.log(image, data.Keywords)
+      const exif = await exifr.parse('assets/images/' + file, { iptc: true })
+      const keywords = exif.Keywords.filter(
+        (x) =>
+          ![
+            'Type/Selfie',
+            'Flagged',
+            'Border Collie',
+            'Tabby',
+            'Jack Russell',
+          ].includes(x)
+      ).map((x) => x.toLowerCase())
+      console.log(keywords)
+      db.fuzzles.push({ file, tags: keywords })
+      // console.log(file, exif.Keywords)
     }
   } catch (err) {
     console.log({ file }, err)
@@ -26,7 +37,7 @@ files.forEach(async (file) => {
 
 router.get('/', (req, res) => {
   db.fuzzles = shuffleArray(db.fuzzles)
-  console.log(db.fuzzles)
+  // console.log(db.fuzzles)
   res.render('home', db)
 })
 
