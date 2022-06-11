@@ -59,18 +59,18 @@ main {
 .gallery img {
   max-width: 100%;
   margin-bottom: 0;
+  cursor: pointer;
 }
 .gallery img:hover {
   box-shadow: 0 0 11px var(--accent);
 }
 .gallery .content {
-  padding: 4px;
+  /* padding: 4px; */
 }
-.gallery .gallery-item { 
-  cursor: pointer;
-}
-.gallery .tags {
-  margin-top: 0px;
+figcomment {
+  display: block;
+  width: 100%;
+  margin-top: -3px;
   padding: 5px;
   background-color: var(--accent);
   border-bottom-left-radius: 7px;

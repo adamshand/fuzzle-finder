@@ -26,9 +26,10 @@ files.forEach(async (file) => {
             'Jack Russell',
           ].includes(x)
       ).map((x) => x.toLowerCase())
-      console.log(keywords)
+      // console.log(keywords)
       db.fuzzles.push({ file, tags: keywords })
       // console.log(file, exif.Keywords)
+      console.log(db.fuzzles)
     }
   } catch (err) {
     console.log({ file }, err)
@@ -39,6 +40,34 @@ router.get('/', (req, res) => {
   db.fuzzles = shuffleArray(db.fuzzles)
   // console.log(db.fuzzles)
   res.render('home', db)
+})
+
+router.get('/by', (req, res) => {
+  res.redirect('/')
+})
+
+router.get('/by/name', (req, res) => {
+  // get uniq list of name tags
+  // shuffle list
+  // pick random image for each tag
+  // build object?
+  // pass to handlebars
+  const names = [
+    { file: '', name: 'dio' },
+    { file: '', name: 'audrey' },
+    { file: '', name: 'andre' },
+    { file: '', name: 'claude' },
+    { file: '', name: 'adam' },
+    { file: '', name: 'tink' },
+    { file: '', name: 'amy' },
+    { file: '', name: 'pam' },
+    { file: '', name: 'brett' },
+    { file: '', name: 'emily' },
+    { file: '', name: 'zsazsa' },
+  ]
+  names.forEach((x) => {})
+  // console.log(db.fuzzles)
+  res.render('by-name', db)
 })
 
 // router.get('/fuzzles', (req, res) => {

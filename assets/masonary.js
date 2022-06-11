@@ -4,12 +4,13 @@ const getVal = (elem, style) =>
   parseInt(window.getComputedStyle(elem).getPropertyValue(style))
 
 const getHeight = (item) =>
-  item.querySelector('.content').getBoundingClientRect().height
+  // item.querySelector('.content').getBoundingClientRect().height
+  item.querySelector('img').getBoundingClientRect().height + 30
 
 const resizeAll = () => {
   let altura = getVal(gallery, 'grid-auto-rows')
   let gap = getVal(gallery, 'grid-row-gap')
-  gallery.querySelectorAll('.gallery-item').forEach((item) => {
+  gallery.querySelectorAll('figure').forEach((item) => {
     item.style.gridRowEnd =
       'span ' + Math.ceil((getHeight(item) + gap) / (altura + gap))
   })

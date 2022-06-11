@@ -1,16 +1,7 @@
-<section class="gallery" id="gallery">
-  {{#each fuzzles}}
-    {{>figure}}
-  {{/each}}
-</div>
-
-
-{{!-- <div class="gallery" id="gallery">
-  {{#each fuzzles}}
-    <div class="gallery-item">
+    <figure class="gallery-item">
       <div class="content">
         <img src="/assets/images/{{file}}" title="{{title}}" />
-        <div class="tags">
+        <figcomment class="tags">
         {{# each tags}}
           {{#if @last}}
             <a href="/tag/{{this}}">{{this}}</a>
@@ -18,8 +9,6 @@
             <a href="/tag/{{this}}">{{this}},</a>
           {{/if}}
         {{/each}}
-        </div>
+        </figcomment>
       </div>
-    </div>
-  {{/each}}
-</div> --}}
+    </figure>
