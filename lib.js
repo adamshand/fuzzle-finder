@@ -1,6 +1,10 @@
 const fs = require('fs')
 const path = require('path')
 
+// use instead of typeof to determine what kind of object something is
+// eg. getInternalclass(date)
+const getInternalClass = (value) => ({}.toString.call(value))
+
 function readJsonFile(file, cb) {
   fs.readFile(path.resolve(file), 'utf-8', (err, data) => {
     if (err) {
@@ -42,4 +46,5 @@ module.exports = {
   shuffleArray,
   readJsonFile,
   writeJsonFile,
+  getInternalClass,
 }

@@ -5,7 +5,7 @@ const environment = process.env.NODE_ENV || 'development'
 const config = require('./knexfile')[environment]
 const db = require('knex')(config)
 
-deleteDb()
+deleteAllDbData()
 
 const files = fs.readdirSync('assets/images/')
 files.forEach(async (filename) => {
@@ -16,18 +16,19 @@ files.forEach(async (filename) => {
     }
   } catch (err) {
     console.log(err)
-  } finally {
-    // db.destroy   // this should work, but it's not ???
   }
 })
 
+// ;async () => await db.destroy()
+db.destroy()
+
 function validateImage(filename) {
-  let r = false
   const ext = filename.split('.').slice(-1)[0].toLowerCase()
   if (filename.includes('.') && ['jpg', 'jpeg', 'png'].includes(ext)) {
-    r = true
+    return true
   }
-  return r
+  console.log(`error: invalid filename: ${filename}`)
+  return false
 }
 
 async function insertImageMetadata(metadata) {
@@ -58,7 +59,7 @@ async function getExif(filename) {
   return { filename, title, date, tags }
 }
 
-async function deleteDb() {
+async function deleteAllDbData() {
   return await db('images').del()
 }
 
