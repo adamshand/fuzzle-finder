@@ -1,26 +1,27 @@
 const exifr = require('exifr')
-const fs = require('fs')
+const fs = require('fs/promises')
 
 const environment = process.env.NODE_ENV || 'development'
 const config = require('./knexfile')[environment]
 const db = require('knex')(config)
 
-deleteAllDbData()
+async function main() {
+  await deleteAllDbData()
 
-const files = fs.readdirSync('assets/images/')
-files.forEach(async (filename) => {
-  try {
-    if (validateImage(filename)) {
-      const metadata = await getExif(filename)
-      await insertImageMetadata(metadata)
+  const files = await fs.readdir('assets/images/')
+  for (const filename of files) {
+    try {
+      if (validateImage(filename)) {
+        const metadata = await getExif(filename)
+        await insertImageMetadata(metadata)
+      }
+    } catch (err) {
+      console.log(err)
     }
-  } catch (err) {
-    console.log(err)
   }
-})
 
-// ;async () => await db.destroy()
-db.destroy()
+  await db.destroy()
+}
 
 function validateImage(filename) {
   const ext = filename.split('.').slice(-1)[0].toLowerCase()
@@ -63,14 +64,7 @@ async function deleteAllDbData() {
   return await db('images').del()
 }
 
-// const keywords = exif.Keywords.filter(
-//   (x) =>
-//     ![
-//       'Type/Selfie',
-//       'Flagged',
-//       'Border Collie',
-//       'Tabby',
-//       'Jack Russell',
-//     ].includes(x)
-// ).map((x) => x.toLowerCase())
-// console.log(keywords)
+main().catch((e) => {
+  process.exitCode = 1
+  console.error(`failed: ${e.message}`)
+})
