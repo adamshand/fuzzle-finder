@@ -3,7 +3,7 @@ const fs = require('fs/promises')
 
 const environment = process.env.NODE_ENV || 'development'
 const config = require('./knexfile')[environment]
-const db = require('knex')(config)
+const db = require('../server/db/db')
 
 async function main() {
   await deleteAllDbData()
@@ -19,7 +19,6 @@ async function main() {
       console.log(err)
     }
   }
-
   await db.destroy()
 }
 

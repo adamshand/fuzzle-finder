@@ -14,7 +14,7 @@ server.use(express.urlencoded({ extended: false }))
 // Handlebars configuration
 server.engine('hbs', hbs.engine({ extname: 'hbs' }))
 server.set('view engine', 'hbs')
-server.use('/', routes)
+server.use('/api/v1', routes)
 
 // fuzzles = { images: ['1.jpeg', '6.jpeg', '7.jpeg', 'FullSizeRender.jpeg'] }
 
