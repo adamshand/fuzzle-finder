@@ -7,17 +7,22 @@ router.get('/ping/', (req, res) => {
   res.json({ pingback: 'hello world' })
 })
 
-// router.delete('/:id', (req, res) => {
-//   const id = req.params.id
-//   db.deleteComment(id)
-//     .then((data) => {
-//       res.json(data)
-//     })
-//     .catch((err) => {
-//       console.error(err.message)
-//       res.status(500).send('Server error')
-//     })
-// })
+router.get('/all', (req, res) => {
+  res.redirect('/v1/images/all/random')
+})
+
+router.get('/all/:sort', (req, res) => {
+  const sort = req.params.sort
+  console.log('sort:', sort)
+  db.getImages()
+    .then((data) => {
+      res.json(data)
+    })
+    .catch((err) => {
+      console.error(err.message)
+      res.status(500).send('Server error')
+    })
+})
 
 // router.patch('/:id', (req, res) => {
 //   const id = req.params.id
