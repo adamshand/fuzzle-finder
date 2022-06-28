@@ -1,9 +1,23 @@
 const config = require('./knexfile').development
 // eslint-disable-next-line no-unused-vars
 const connection = require('knex')(config)
+const utils = require('../lib.js')
 
-function getImages(db = connection) {
-  return db('images').select()
+function getImages(sort, db = connection) {
+  switch (sort) {
+    case 'random':
+      return db('images')
+        .select()
+        .then((images) => {
+          return utils.shuffleArray(images)
+        })
+    case 'date':
+      return db('images').select().orderBy('date', 'desc')
+    case 'rdate':
+      return db('images').select().orderBy('date', 'asc')
+    default:
+      return db('images').select()
+  }
 }
 
 // function getPost(id, db = connection) {
