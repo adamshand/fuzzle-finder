@@ -18,6 +18,7 @@ function getImages(sort = 'random', db = connection) {
 }
 
 function getImagesByTag(tag, sort = 'random', db = connection) {
+  console.log('db', { sort })
   switch (sort) {
     case 'date':
       return db('images')

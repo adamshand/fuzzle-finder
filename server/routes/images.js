@@ -25,8 +25,7 @@ router.get('/thumbs', (req, res) => {
 router.get('/thumbs/tag/:tag', (req, res) => {
   const { tag } = req.params
   const { sort } = req.query
-  console.log({ tag })
-  // const sort = req.params.sort || 'random'
+  console.log({ sort })
   db.getImagesByTag(tag, sort)
     .then((data) => {
       res.json(data)
