@@ -1,7 +1,7 @@
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   /* border: 1px dashed crimson; */
   color: goldenrod;
 }
@@ -9,22 +9,28 @@ body {
   background-color: black;
 }
 header {
-  /* margin: .3rem auto 0 20px; */
-  padding: 0 1rem;
+  display: grid;
+  grid-auto-flow: column;
+  padding: 0 2rem;
 }
 h1 {
-  display: inline-block;
+  display: inline-grid;
   font-size: xxx-large;
   font-weight: bold;
+  vertical-align: bottom;
+
 }  
 nav {
-  float: right;
+  display: inline-grid;
+  margin-top: 1rem;
+  text-align: right;
   font-size: xx-large;
-  font-weight: light;
+  font-weight: lighter;
 }
 main { 
-  border-top: 3px solid goldenrod;
-  border-bottom: 1px solid goldenrod;
+  margin: auto 1.5vw;
+  border-top: 2px solid goldenrod;
+  border-bottom: 1px dotted goldenrod;
   padding: 1vw;
 }
 .masonry-grid {
@@ -35,11 +41,11 @@ main {
 img.fuzzle {
   margin-top: 1vw;
   border: 2px solid goldenrod;
-  width: 32vw;
+  width: 30.5vw;
   height: auto;
 }
 figcaption {
-  width: 32vw;
+  width: 30.5vw;
   margin-top: -7px;
   /* margin-left: -20px; */
   padding: 3px;
@@ -47,9 +53,13 @@ figcaption {
   border-bottom-right-radius: 8px;
   background-color: goldenrod;
   color: black;
-  font-size: smaller;
   font-weight: lighter;
+  text-align: center;
 }
+figcaption a, figcaption a:hover,  figcaptiona:visited {
+  color: black;
+}
+
 footer {
   font-size: smaller;
   font-weight: lighter;

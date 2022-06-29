@@ -10,10 +10,24 @@ router.get('/ping(/:msg)?', (req, res) => {
   res.json({ pingback: msg })
 })
 
-router.get('/images/all(/:sort)?', (req, res) => {
-  const sort = req.params.sort || 'random'
-  console.log('sort:', sort)
+router.get('/thumbs', (req, res) => {
+  const { sort } = req.query
   db.getImages(sort)
+    .then((data) => {
+      res.json(data)
+    })
+    .catch((err) => {
+      console.error(err.message)
+      res.status(500).send('Server error')
+    })
+})
+
+router.get('/thumbs/tag/:tag', (req, res) => {
+  const { tag } = req.params
+  const { sort } = req.query
+  console.log({ tag })
+  // const sort = req.params.sort || 'random'
+  db.getImagesByTag(tag, sort)
     .then((data) => {
       res.json(data)
     })
