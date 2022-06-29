@@ -4,18 +4,14 @@ const db = require('../db/db')
 
 const router = express.Router()
 
-// /vi/images
-router.get('/ping/', (req, res) => {
-  res.json({ pingback: 'hello world' })
+// /api/v1
+router.get('/ping(/:msg)?', (req, res) => {
+  const msg = req.params.msg || 'hello world'
+  res.json({ pingback: msg })
 })
 
-router.get('/all', (req, res) => {
-  console.log('redirecting')
-  res.redirect('/v1/images/all/random')
-})
-
-router.get('/all/:sort', (req, res) => {
-  const sort = req.params.sort
+router.get('/images/all(/:sort)?', (req, res) => {
+  const sort = req.params.sort || 'random'
   console.log('sort:', sort)
   db.getImages(sort)
     .then((data) => {

@@ -10,19 +10,22 @@ body {
 }
 header {
   /* margin: .3rem auto 0 20px; */
-  /* padding: .5rem auto auto 5rem;; */
+  padding: 0 1rem;
 }
 h1 {
   display: inline-block;
+  font-size: xxx-large;
+  font-weight: bold;
 }  
 nav {
   float: right;
-  font-size: x-large;
+  font-size: xx-large;
+  font-weight: light;
 }
 main { 
   border-top: 3px solid goldenrod;
   border-bottom: 1px solid goldenrod;
-  margin-bottom: 1vw;
+  padding: 1vw;
 }
 .masonry-grid {
   display: flex;
