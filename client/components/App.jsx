@@ -1,38 +1,51 @@
-import React from 'react'
-
-import { Route, Routes, Outlet } from 'react-router-dom'
-import useFetchPosts from './hooks/useFetchPosts'
-
-import Layout from './Layout'
-import Post from './Post'
-import Posts from './Posts'
-import PostForm from './PostForm'
-import CommentForm from './CommentForm'
+import React, { useState, useEffect } from 'react'
+import request from 'superagent'
+import Masonry from 'react-masonry-css'
 
 function App() {
-  const { posts, loading, error, fetchPosts } = useFetchPosts()
+  const [items, setItems] = useState([])
+
+  useEffect(() => {
+    return request
+      .get('/v1/images/all/random')
+      .then((res) => {
+        setItems(res.body.slice(0, 17))
+      })
+      .catch((err) => console.log(err))
+  }, [])
 
   return (
-    <Routes>
-      <Route path="/" element={<Layout errorMessage={error} />}>
-        <Route index element={<Posts posts={posts} />} />
-        <Route
-          path="posts"
-          element={<Outlet context={{ posts, loading, error, fetchPosts }} />}
-        >
-          <Route path=":id" element={<Post />}>
-            <Route
-              path="comments/new"
-              element={<CommentForm variant="new" />}
-            />
-          </Route>
-          <Route path=":id/edit" element={<PostForm variant="edit" />} />
-          <Route path="new" element={<PostForm variant="new" />} />
-        </Route>
-      </Route>
-
-      {error && error}
-    </Routes>
+    <>
+      <header>
+        <h1>a fuzzle finder</h1>
+        <nav>name &middot; species &middot; with</nav>
+      </header>
+      <main>
+        <div className="masonary-grid">
+          <Masonry
+            breakpointCols={3}
+            className="masonry-grid"
+            columnClassName="masonry-column"
+          >
+            {items.map((image) => (
+              <div key={image.id} className="my-masonry-column">
+                <figure>
+                  <img
+                    className="fuzzle"
+                    src={'/images/' + image.filename}
+                    alt={image.title}
+                  />
+                  <figcaption>{image.tags}</figcaption>
+                </figure>
+              </div>
+            ))}
+          </Masonry>
+        </div>
+      </main>
+      <footer>
+        ♡2022 by adam shand. sharing is an act of love, please share.
+      </footer>
+    </>
   )
 }
 

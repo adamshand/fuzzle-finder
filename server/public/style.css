@@ -1,0 +1,54 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* border: 1px dashed crimson; */
+  color: goldenrod;
+}
+body {
+  background-color: black;
+}
+header {
+  /* margin: .3rem auto 0 20px; */
+  /* padding: .5rem auto auto 5rem;; */
+}
+h1 {
+  display: inline-block;
+}  
+nav {
+  float: right;
+  font-size: x-large;
+}
+main { 
+  border-top: 3px solid goldenrod;
+  border-bottom: 1px solid goldenrod;
+  margin-bottom: 1vw;
+}
+.masonry-grid {
+  display: flex;
+}
+.masonary-column {
+}
+img.fuzzle {
+  margin-top: 1vw;
+  border: 2px solid goldenrod;
+  width: 32vw;
+  height: auto;
+}
+figcaption {
+  width: 32vw;
+  margin-top: -7px;
+  /* margin-left: -20px; */
+  padding: 3px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background-color: goldenrod;
+  color: black;
+  font-size: smaller;
+  font-weight: lighter;
+}
+footer {
+  font-size: smaller;
+  font-weight: lighter;
+  text-align: center;
+}
