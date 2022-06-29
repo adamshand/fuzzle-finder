@@ -7,7 +7,7 @@ function App() {
 
   useEffect(() => {
     return request
-      .get('/v1/images/all/random')
+      .get('/api/v1/images/all')
       .then((res) => {
         setItems(res.body.slice(0, 17))
       })
