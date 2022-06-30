@@ -41,6 +41,8 @@ main {
 img.fuzzle {
   margin-top: 1vw;
   border: 2px solid goldenrod;
+  /* border-top-left-radius: 8px;
+  border-top-right-radius: 8px; */
   width: 30.5vw;
   height: auto;
 }

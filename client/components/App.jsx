@@ -2,6 +2,7 @@ import React from 'react'
 import { Routes, Route, Link, NavLink } from 'react-router-dom'
 
 import Thumbs from './Thumbs.jsx'
+import TagGroups from './TagGroups.jsx'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Thumbs />} />
           <Route path="/tag/:tag" element={<Thumbs />} />
+          <Route path="/group/:group" element={<TagGroups />} />
           {/* <Route component={NoMatchPage} /> */}
         </Routes>
       </main>

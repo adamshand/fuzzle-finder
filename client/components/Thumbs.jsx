@@ -15,7 +15,7 @@ function App() {
     return request
       .get(url)
       .then((res) => {
-        setItems(res.body.slice(0, 17))
+        setItems(res.body)
       })
       .catch((err) => console.log(err))
   }, [url, tag])
@@ -39,7 +39,7 @@ function App() {
                 {image.tags
                   .split(' ')
                   .sort()
-                  .map((tag) => tag.split('/')[1])
+                  .map((taggroup) => taggroup.split('/')[1])
                   .map((tag, i) => (
                     <Link key={i} to={`/tag/${tag}`}>
                       {`${tag}, `}
