@@ -42,7 +42,9 @@ function App() {
                   .map((taggroup) => taggroup.split('/')[1])
                   .map((tag, i) => (
                     <Link key={i} to={`/tag/${tag}`}>
-                      {`${tag}, `}
+                      {i + 1 != image.tags.split(' ').length
+                        ? `${tag}, `
+                        : `${tag}`}
                     </Link>
                   ))}
               </figcaption>
