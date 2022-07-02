@@ -1,37 +1,43 @@
+:root {
+  --dark: hsl(0, 0%, 14%);
+  --light: hsl(0, 0%, 96%);
+  --accent: goldenrod;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   /* border: 1px dashed crimson; */
-  color: goldenrod;
+}
+html {
+  color: var(--accent);
 }
 body {
-  background-color: black;
+  margin: 3vh 1vw auto 1vw;
+  background-color: var(--dark);
 }
 header {
-  display: grid;
-  grid-auto-flow: column;
-  padding: 0 2rem;
+  font-size: 2.5em;
+  font-weight: bolder;
+  padding: 0 2vw;
 }
-h1 {
-  display: inline-grid;
-  font-size: xxx-large;
-  font-weight: bold;
-  vertical-align: bottom;
-
-}  
 nav {
-  display: inline-grid;
-  margin-top: 1rem;
-  text-align: right;
-  font-size: xx-large;
-  font-weight: lighter;
+  float: right;
+  margin-top: .6em;
+  margin-right: .5em;
+  font-size: .6em;
+}
+header a:link, header a:visited {
+  color: var(--accent);
+  text-decoration: none;
 }
 main { 
   margin: auto 1.5vw;
-  border-top: 2px solid goldenrod;
-  border-bottom: 1px dotted goldenrod;
-  padding: 1vw;
+  border: 2px solid var(--accent);
+  /* border-top: 2px solid var(--accent);
+  border-bottom: 1px dotted var(--accent); */
+  padding: 0 0 1vw 1vw ;
 }
 .masonry-grid {
   display: flex;
@@ -40,28 +46,25 @@ main {
 }
 img.fuzzle {
   margin-top: 1vw;
-  border: 2px solid goldenrod;
-  /* border-top-left-radius: 8px;
-  border-top-right-radius: 8px; */
-  width: 30.5vw;
+  /* border: 2px solid var(--accent); */
+  width: 30vw;
   height: auto;
 }
 figcaption {
-  width: 30.5vw;
+  width: 30vw;
   margin-top: -7px;
   /* margin-left: -20px; */
   padding: 3px;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  background-color: goldenrod;
-  color: black;
+  background-color: var(--accent);
+  color: var(--dark);
   font-weight: lighter;
   text-align: center;
 }
-figcaption a, figcaption a:hover,  figcaptiona:visited {
-  color: black;
+figcaption a, figcaption a:hover,  figcaption a:visited {
+  color: var(--dark);
 }
-
 footer {
   font-size: smaller;
   font-weight: lighter;

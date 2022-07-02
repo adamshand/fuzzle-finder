@@ -15,7 +15,6 @@
     "lint": "eslint --ext .js,.jsx .",
     "lint:fix": "eslint . --fix",
     "start": "node server",
-    "postinstall": "npm run webpack",
     "test": "jest --watchAll"
   },
   "keywords": [

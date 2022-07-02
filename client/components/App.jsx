@@ -8,12 +8,10 @@ function App() {
   return (
     <>
       <header>
-        <h1>
-          <Link to="/">the fuzzler</Link>
-        </h1>
+        <Link to="/">the fuzzler</Link>
         <nav>
-          <NavLink to="/group/name">name</NavLink> &middot;
-          <NavLink to="/group/species">species</NavLink> &middot;
+          <NavLink to="/group/name">name</NavLink> &middot;&nbsp;
+          <NavLink to="/group/species">species</NavLink> &middot;&nbsp;
           <NavLink to="/group/with">with</NavLink>
         </nav>
       </header>
