@@ -20,22 +20,22 @@ function App() {
   }, [url, group])
 
   return (
-    <>
+    <section className="group">
       {items.map((tag, i) => (
-        <figure key={i}>
+        <figure key={i} className="group">
           <Link to={`/tag/${tag}`}>
             <img
-              style={{ width: '250px', height: '250px' }}
+              className="group"
               src={`/api/v1/photo/${group}/${tag}`}
-              alt=""
+              alt={`${group}/${tag}`}
             />
           </Link>
-          <figcaption>
+          <figcaption className="group">
             <Link to={`/tag/${tag}`}>{tag}</Link>
           </figcaption>
         </figure>
       ))}
-    </>
+    </section>
   )
 }
 

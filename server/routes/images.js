@@ -1,9 +1,7 @@
 const express = require('express')
-const db = require('../db/db')
 const path = require('path')
 
-// const utils = require('../lib.js')
-
+const db = require('../db/db')
 const router = express.Router()
 
 // /api/v1

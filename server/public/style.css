@@ -24,9 +24,9 @@ header {
 }
 nav {
   float: right;
-  margin-top: .6em;
+  margin-top: .2em;
   margin-right: .5em;
-  font-size: .6em;
+  font-size: .8em;
 }
 header a:link, header a:visited {
   color: var(--accent);
@@ -46,25 +46,51 @@ main {
 }
 img.fuzzle {
   margin-top: 1vw;
-  /* border: 2px solid var(--accent); */
   width: 30vw;
   height: auto;
 }
 figcaption {
   width: 30vw;
   margin-top: -7px;
-  /* margin-left: -20px; */
   padding: 3px;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   background-color: var(--accent);
   color: var(--dark);
+  font-size: 1.4em;
   font-weight: lighter;
   text-align: center;
 }
-figcaption a, figcaption a:hover,  figcaption a:visited {
+figcaption a, figcaption a:hover, figcaption a:visited {
   color: var(--dark);
+  text-decoration: none;
 }
+section.group {
+  display: grid;
+  margin: 1vw 1vw 0 0;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 15px;
+}
+figure.group {
+  border: var(--accent);
+
+}
+img.group {
+  width: 29.5vw;
+  height: 29.5vw;
+  object-fit: cover;
+}
+figcaption.group {
+  width: 29.5vw;
+  padding: .3em 0 .2em 0;
+  font-size: 1.8em;
+  font-weight: lighter;
+}
+figcaption.group a, figcaption.group a:hover, figcaption.group a:visited {
+  color: var(--dark);
+  text-decoration: none;
+}
+
 footer {
   font-size: smaller;
   font-weight: lighter;

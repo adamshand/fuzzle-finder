@@ -1,6 +1,5 @@
 const config = require('./knexfile').development
 const connection = require('knex')(config)
-const { random } = require('lodash')
 const utils = require('../lib.js')
 
 function getRandomPhotoByTag(group, tag, db = connection) {
