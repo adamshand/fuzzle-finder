@@ -12,9 +12,9 @@ function App() {
           <Link to="/">the fuzzler</Link>
         </h1>
         <nav>
-          <NavLink to="/name">name</NavLink> &middot;
-          <NavLink to="/species">species</NavLink> &middot;
-          <NavLink to="/with">with</NavLink>
+          <NavLink to="/group/name">name</NavLink> &middot;
+          <NavLink to="/group/species">species</NavLink> &middot;
+          <NavLink to="/group/with">with</NavLink>
         </nav>
       </header>
       <main>

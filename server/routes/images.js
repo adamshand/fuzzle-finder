@@ -1,16 +1,19 @@
 const express = require('express')
 const db = require('../db/db')
+const path = require('path')
+
 // const utils = require('../lib.js')
 
 const router = express.Router()
 
 // /api/v1
-// select * from images where tags like '%species/dog%' order by random() limit 1;
-router.get('/hero/:group/:tag', (req, res) => {
+router.get('/photo/:group/:tag', (req, res) => {
   const { group, tag } = req.params
-  db.getGroupTags(group)
-    .then((data) => {
-      res.json(data)
+  db.getRandomPhotoByTag(group, tag)
+    .then((photo) => {
+      res.sendFile(
+        path.join(__dirname, '../../server/public/images', photo.filename)
+      )
     })
     .catch((err) => {
       console.error(err.message)

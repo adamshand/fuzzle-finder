@@ -1,15 +1,17 @@
 const config = require('./knexfile').development
 const connection = require('knex')(config)
+const { random } = require('lodash')
 const utils = require('../lib.js')
 
-function getPhotoByTag(group, tag, db = connection) {
-  // select * from images where tags like '%species/dog%' order by random() limit 1;
+function getRandomPhotoByTag(group, tag, db = connection) {
   return db('images')
     .select('filename')
     .where('tags', 'like', `%${group}/${tag}%`)
-    .orderby()
+    .orderByRaw('random()')
     .limit(1)
+    .first()
 }
+
 function getGroupTags(group, db = connection) {
   const regex = new RegExp(group + '/', 'gi')
   //TODO need to sanitise $group
@@ -68,5 +70,5 @@ module.exports = {
   getImages,
   getImagesByTag,
   getGroupTags,
-  getPhotoByTag,
+  getRandomPhotoByTag,
 }

@@ -21,10 +21,18 @@ function App() {
 
   return (
     <>
-      {items.map((group, i) => (
+      {items.map((tag, i) => (
         <figure key={i}>
-          <img style={{ width: '250px', height: '250px' }} src="" alt="" />
-          <figcaption>{group}</figcaption>
+          <Link to={`/tag/${tag}`}>
+            <img
+              style={{ width: '250px', height: '250px' }}
+              src={`/api/v1/photo/${group}/${tag}`}
+              alt=""
+            />
+          </Link>
+          <figcaption>
+            <Link to={`/tag/${tag}`}>{tag}</Link>
+          </figcaption>
         </figure>
       ))}
     </>
