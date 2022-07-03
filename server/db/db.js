@@ -1,6 +1,5 @@
 const config = require('./knexfile').development
 const connection = require('knex')(config)
-const utils = require('../lib.js')
 
 function getRandomPhotoByTag(group, tag, db = connection) {
   return db('images')
@@ -17,6 +16,7 @@ function getGroupTags(group, db = connection) {
   return db('images')
     .select('tags')
     .where('tags', 'like', `%${group}/%`)
+    .orderByRaw('random()')
     .then((result) => {
       // TODO this is a mess, but it works.
       return result
@@ -25,49 +25,44 @@ function getGroupTags(group, db = connection) {
         .filter((g) => g.includes(group + '/'))
         .map((group) => group.replace(regex, ''))
         .filter((v, i, a) => a.indexOf(v) === i)
-        .sort()
     })
 }
-//        .map((group) => group.replace(/with[/]/gi, ''))
 
-function getImages(sort = 'random', db = connection) {
+function getPhotos(sort = 'random', limit = 9999, db = connection) {
   switch (sort) {
     case 'date':
-      return db('images').select().orderBy('date', 'desc')
+      return db('images').select().orderBy('date', 'desc').limit(limit)
     case 'rdate':
-      return db('images').select().orderBy('date', 'asc')
+      return db('images').select().orderBy('date', 'asc').limit(limit)
     default:
-      return db('images')
-        .select()
-        .then((images) => {
-          return utils.shuffleArray(images)
-        })
+      return db('images').select().orderByRaw('random()').limit(limit)
   }
 }
 
-function getImagesByTag(tag, sort = 'random', db = connection) {
+function getPhotosByTag(tag, sort = 'random', limit = 9999, db = connection) {
   //TODO need to sanitise $tag & sort (?)
   switch (sort) {
     case 'date':
       return db('images')
         .where('tags', 'like', `%/${tag}%`)
         .orderBy('date', 'desc')
+        .limit(limit)
     case 'rdate':
       return db('images')
         .where('tags', 'like', `%/${tag}%`)
         .orderBy('date', 'asc')
+        .limit(limit)
     default:
       return db('images')
         .where('tags', 'like', `%/${tag}%`)
-        .then((images) => {
-          return utils.shuffleArray(images)
-        })
+        .orderByRaw('random()')
+        .limit(limit)
   }
 }
 
 module.exports = {
-  getImages,
-  getImagesByTag,
+  getPhotos,
+  getPhotosByTag,
   getGroupTags,
   getRandomPhotoByTag,
 }

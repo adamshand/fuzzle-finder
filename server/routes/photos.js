@@ -3,6 +3,10 @@ const path = require('path')
 
 const db = require('../db/db')
 const router = express.Router()
+const { shuffle } = require('lodash')
+
+// https://stackoverflow.com/questions/56386307/loading-of-a-resource-blocked-by-content-security-policy
+// res.header('Content-Security-Policy', 'img-src self')
 
 // /api/v1
 router.get('/photo/:group/:tag', (req, res) => {
@@ -19,6 +23,10 @@ router.get('/photo/:group/:tag', (req, res) => {
     })
 })
 
+// router.get('/group', (req, res) => {
+//   res.redirect('/')
+// })
+
 router.get('/group/:group', (req, res) => {
   const { group } = req.params
   db.getGroupTags(group)
@@ -31,10 +39,10 @@ router.get('/group/:group', (req, res) => {
     })
 })
 
-router.get('/thumbs/tag/:tag', (req, res) => {
+router.get('/photos/tag/:tag', (req, res) => {
   const { tag } = req.params
-  const { sort } = req.query
-  db.getImagesByTag(tag, sort)
+  const { sort, limit } = req.query
+  db.getPhotosByTag(tag, sort, limit)
     .then((data) => {
       res.json(data)
     })
@@ -44,9 +52,9 @@ router.get('/thumbs/tag/:tag', (req, res) => {
     })
 })
 
-router.get('/thumbs', (req, res) => {
-  const { sort } = req.query
-  db.getImages(sort)
+router.get('/photos/', (req, res) => {
+  const { sort, limit } = req.query
+  db.getPhotos(sort, limit)
     .then((data) => {
       res.json(data)
     })
