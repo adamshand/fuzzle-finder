@@ -1,7 +1,7 @@
 import React from 'react'
 import { Routes, Route, Link, NavLink } from 'react-router-dom'
 
-import Photos from './Photos.jsx'
+import Tags from './Tags.jsx'
 import Groups from './Groups.jsx'
 
 function App() {
@@ -19,8 +19,8 @@ function App() {
         </nav>
       </header>
       <Routes>
-        <Route path="/" element={<Photos />} />
-        <Route path="/tag/:tag" element={<Photos />} />
+        <Route path="/" element={<Tags />} />
+        <Route path="/tag/:tag" element={<Tags />} />
         <Route path="/group/:group" element={<Groups />} />
         {/* <Route component={NoMatchPage} /> */}
       </Routes>
