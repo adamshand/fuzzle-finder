@@ -19,13 +19,12 @@ html {
   color: var(--accent);
 }
 header {
-  display: block;
+  padding-top: 2vh;
   font-size: 42px;
   font-weight: bolder;
   text-align: center;
 }
 nav {
-  display: block;
   font-size: 30px;
 }
 a:link, a:visited {
@@ -55,16 +54,13 @@ figcaption {
   margin-left: -7px;
   padding: 3px;
   width: var(--photoW);
+  border: 2px solid var(--accent);
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  background-color: var(--accent);
+  background-color: var(--dark);
   color: var(--dark);
   font-size: 18px;
   text-align: center;
-}
-figcaption {
-  background-color: var(--dark);
-  border: 2px solid var(--accent);
 }
 img {
   width: 100%;

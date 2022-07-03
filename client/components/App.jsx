@@ -8,7 +8,8 @@ function App() {
   return (
     <>
       <header>
-        <Link to="/">the fuzzler</Link>
+        <img style={{ width: '64px' }} src="/fuzzler.png" alt="logo of paw" />
+        <br />
         <nav>
           <NavLink to="/group/name">name</NavLink> ♡&nbsp;
           <NavLink to="/group/species">species</NavLink> ♡&nbsp;
@@ -25,7 +26,7 @@ function App() {
       </main>
       <footer>
         <a href="https://copyheart.org/">
-          ♡ copying is an act of love (just like cuddles).
+          ♡ 2022 (like cuddles) copying is an act of love. please share.
         </a>
       </footer>
     </>
