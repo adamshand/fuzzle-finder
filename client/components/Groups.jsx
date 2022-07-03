@@ -19,18 +19,17 @@ function App() {
   }, [api, group])
 
   return (
-    <section className="group">
+    <section>
       {console.log(`useEffect group: ${group} url: ${api} groups"`, groups)}
       {groups?.map((tag, i) => (
-        <figure key={i} className="group">
+        <figure key={i}>
           <Link to={`/tag/${tag}`}>
             <img
-              className="group"
               src={`/api/v1/photo/${group}/${tag}`}
               alt={`${group}/${tag}`}
             />
           </Link>
-          <figcaption className="group">
+          <figcaption>
             <Link to={`/tag/${tag}`}>{tag}</Link>
           </figcaption>
         </figure>

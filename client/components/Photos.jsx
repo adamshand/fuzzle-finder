@@ -20,16 +20,12 @@ function App() {
   }, [api, tag])
 
   return (
-    <section className="photos">
+    <section>
       {console.log(`tag: ${tag} api: ${api} photos:`, photos)}
       {photos?.map((image, i) => (
-        <figure key={i} className="photos">
-          <img
-            className="photos"
-            src={'/images/' + image.filename}
-            alt={image.title}
-          />
-          <figcaption className="photos">
+        <figure key={i}>
+          <img src={'/images/' + image.filename} alt={image.title} />
+          <figcaption>
             {image.tags
               .split(' ')
               .sort()

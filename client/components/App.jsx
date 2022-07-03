@@ -6,9 +6,11 @@ import Groups from './Groups.jsx'
 
 function App() {
   return (
-    <>
+    <main>
       <header>
-        <img style={{ width: '64px' }} src="/fuzzler.png" alt="logo of paw" />
+        <Link to="/">
+          <img style={{ width: '64px' }} src="/fuzzler.png" alt="logo of paw" />
+        </Link>
         <br />
         <nav>
           <NavLink to="/group/name">name</NavLink> ♡&nbsp;
@@ -16,20 +18,18 @@ function App() {
           <NavLink to="/group/with">with</NavLink>
         </nav>
       </header>
-      <main>
-        <Routes>
-          <Route path="/" element={<Photos />} />
-          <Route path="/tag/:tag" element={<Photos />} />
-          <Route path="/group/:group" element={<Groups />} />
-          {/* <Route component={NoMatchPage} /> */}
-        </Routes>
-      </main>
+      <Routes>
+        <Route path="/" element={<Photos />} />
+        <Route path="/tag/:tag" element={<Photos />} />
+        <Route path="/group/:group" element={<Groups />} />
+        {/* <Route component={NoMatchPage} /> */}
+      </Routes>
       <footer>
         <a href="https://copyheart.org/">
           ♡ 2022 (like cuddles) copying is an act of love. please share.
         </a>
       </footer>
-    </>
+    </main>
   )
 }
 
