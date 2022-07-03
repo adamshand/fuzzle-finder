@@ -15,6 +15,7 @@ function App() {
       .get(api)
       .then((res) => {
         setGroups({ ...groups, [group]: res.body })
+        console.log(groups)
       })
       .catch((err) => console.log(err))
   }, [api, group])
