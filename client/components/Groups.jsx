@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
 import request from 'superagent'
+// import { shuffle } from 'lodash'
 
 function App() {
   const { group } = useParams()

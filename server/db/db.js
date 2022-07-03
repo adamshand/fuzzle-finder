@@ -13,19 +13,22 @@ function getRandomPhotoByTag(group, tag, db = connection) {
 function getGroupTags(group, db = connection) {
   const regex = new RegExp(group + '/', 'gi')
   //TODO need to sanitise $group
-  return db('images')
-    .select('tags')
-    .where('tags', 'like', `%${group}/%`)
-    .orderByRaw('random()')
-    .then((result) => {
-      // TODO this is a mess, but it works.
-      return result
-        .map((t) => t.tags.split(' '))
-        .reduce((a, e) => a.concat(e))
-        .filter((g) => g.includes(group + '/'))
-        .map((group) => group.replace(regex, ''))
-        .filter((v, i, a) => a.indexOf(v) === i)
-    })
+  return (
+    db('images')
+      .select('tags')
+      .where('tags', 'like', `%${group}/%`)
+      // .orderByRaw('random()')
+      .then((result) => {
+        // TODO this is a mess, but it works.
+        return result
+          .map((t) => t.tags.split(' '))
+          .reduce((a, e) => a.concat(e))
+          .filter((g) => g.includes(group + '/'))
+          .map((group) => group.replace(regex, ''))
+          .filter((v, i, a) => a.indexOf(v) === i)
+          .sort()
+      })
+  )
 }
 
 function getPhotos(sort = 'random', limit = 9999, db = connection) {

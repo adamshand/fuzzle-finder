@@ -24,11 +24,11 @@ function App() {
         <Route path="/group/:group" element={<Groups />} />
         {/* <Route component={NoMatchPage} /> */}
       </Routes>
-      <footer>
+      {/* <footer>
         <a href="https://copyheart.org/">
           ♡ 2022 (like cuddles) copying is an act of love. please share.
         </a>
-      </footer>
+      </footer> */}
     </main>
   )
 }
