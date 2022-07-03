@@ -6,14 +6,10 @@ import request from 'superagent'
 function App() {
   const { tag } = useParams()
   const [photos, setPhotos] = useState([])
-  const [api, setApi] = useState()
+  const [api, setApi] = useState(`/api/v1/photos?limit=50`)
 
   useEffect(() => {
-    if (tag) {
-      setApi(`/api/v1/photos/tag/${tag}?limit=20`)
-    } else {
-      setApi(`/api/v1/photos?limit=20`)
-    }
+    if (tag) setApi(`/api/v1/photos/tag/${tag}?limit=50`)
     console.log(`useEffect tag: ${tag} api: ${api}`)
     return request
       .get(api)
