@@ -5,23 +5,23 @@ import request from 'superagent'
 
 function App() {
   const { group } = useParams()
-  const [items, setItems] = useState([''])
-  const [url, setUrl] = useState(['/api/v1/group/species'])
+  const [groups, setGroups] = useState([])
+  const [api, setApi] = useState()
 
   useEffect(() => {
-    if (group) setUrl(`/api/v1/group/${group}`)
-    console.log('TagGroup', { url })
+    setApi(`/api/v1/group/${group}`)
     return request
-      .get(url)
+      .get(api)
       .then((res) => {
-        setItems(res.body)
+        setGroups(res.body)
       })
       .catch((err) => console.log(err))
-  }, [url, group])
+  }, [api, group])
 
   return (
     <section className="group">
-      {items.map((tag, i) => (
+      {console.log(`useEffect group: ${group} url: ${api} groups"`, groups)}
+      {groups?.map((tag, i) => (
         <figure key={i} className="group">
           <Link to={`/tag/${tag}`}>
             <img
@@ -37,6 +37,18 @@ function App() {
       ))}
     </section>
   )
+}
+
+function shuffleArray(array) {
+  let curId = array.length
+  while (0 !== curId) {
+    let randId = Math.floor(Math.random() * curId)
+    curId -= 1
+    let tmp = array[curId]
+    array[curId] = array[randId]
+    array[randId] = tmp
+  }
+  return array
 }
 
 export default App

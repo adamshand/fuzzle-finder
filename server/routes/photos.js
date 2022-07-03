@@ -3,7 +3,7 @@ const path = require('path')
 
 const db = require('../db/db')
 const router = express.Router()
-const { shuffle } = require('lodash')
+// const { shuffle } = require('lodash')
 
 // https://stackoverflow.com/questions/56386307/loading-of-a-resource-blocked-by-content-security-policy
 // res.header('Content-Security-Policy', 'img-src self')

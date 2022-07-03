@@ -3,11 +3,10 @@
   --light: hsl(0, 0%, 96%);
   --accent: goldenrod;
 }
-
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   /* border: 1px dashed crimson; */
 }
 html {
@@ -28,26 +27,14 @@ nav {
   margin-right: .5em;
   font-size: .8em;
 }
-header a:link, header a:visited {
+a:link, a:visited {
   color: var(--accent);
   text-decoration: none;
 }
 main { 
   margin: auto 1.5vw;
   border: 2px solid var(--accent);
-  /* border-top: 2px solid var(--accent);
-  border-bottom: 1px dotted var(--accent); */
-  padding: 0 0 1vw 1vw ;
-}
-.masonry-grid {
-  display: flex;
-}
-.masonary-column {
-}
-img.fuzzle {
-  margin-top: 1vw;
-  width: 30vw;
-  height: auto;
+  padding: 1vw 0 1vw 1vw ;
 }
 figcaption {
   width: 30vw;
@@ -65,6 +52,31 @@ figcaption a, figcaption a:hover, figcaption a:visited {
   color: var(--dark);
   text-decoration: none;
 }
+
+section.photos {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 1vw;
+}
+figure.photos {
+  border: var(--accent);
+}
+img.photos {
+  width: 17vw;
+  height: 17vw;
+  object-fit: cover;
+}
+figcaption.photos {
+  width: 17vw;
+  padding: .3em 0 .2em 0;
+  font-size: 1em;
+  font-weight: lighter;
+}
+figcaption.photos a, figcaption.group a:hover, figcaption.group a:visited {
+  color: var(--dark);
+  text-decoration: none;
+}
+
 section.group {
   display: grid;
   margin: 1vw 1vw 0 0;
@@ -73,7 +85,6 @@ section.group {
 }
 figure.group {
   border: var(--accent);
-
 }
 img.group {
   width: 29.5vw;
@@ -90,9 +101,19 @@ figcaption.group a, figcaption.group a:hover, figcaption.group a:visited {
   color: var(--dark);
   text-decoration: none;
 }
-
 footer {
   font-size: smaller;
   font-weight: lighter;
   text-align: center;
 }
+
+/* .masonry-grid {
+  display: flex;
+}
+.masonary-column {
+}
+img.fuzzle {
+  margin-top: 1vw;
+  width: 30vw;
+  height: auto;
+} */
