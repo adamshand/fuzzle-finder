@@ -6,7 +6,7 @@ import request from 'superagent'
 
 function App() {
   const { group } = useParams()
-  const [groups, setGroups] = useState([])
+  const [groups, setGroups] = useState({})
   const [api, setApi] = useState()
 
   useEffect(() => {
@@ -14,15 +14,15 @@ function App() {
     return request
       .get(api)
       .then((res) => {
-        setGroups(res.body)
+        setGroups({ ...groups, [group]: res.body })
       })
       .catch((err) => console.log(err))
   }, [api, group])
 
   return (
     <section>
-      {console.log(`useEffect group: ${group} url: ${api} groups"`, groups)}
-      {groups?.map((tag, i) => (
+      {/* {console.log(`useEffect group: ${group} url: ${api} groups"`, groups)} */}
+      {groups[group]?.map((tag, i) => (
         <figure key={i}>
           <Link to={`/tag/${tag}`}>
             <img

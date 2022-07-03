@@ -5,24 +5,25 @@ import request from 'superagent'
 
 function App() {
   const { tag } = useParams()
-  const [photos, setPhotos] = useState([])
+  const [photos, setPhotos] = useState({})
   const [api, setApi] = useState(`/api/v1/photos?limit=50`)
 
   useEffect(() => {
     if (tag) setApi(`/api/v1/photos/tag/${tag}?limit=50`)
-    console.log(`useEffect tag: ${tag} api: ${api}`)
+    // console.log(`useEffect tag: ${tag} api: ${api}`)
     return request
       .get(api)
       .then((res) => {
-        setPhotos(res.body)
+        // setPhotos(res.body)
+        setPhotos({ ...photos, [tag]: res.body })
       })
       .catch((err) => console.log(err))
-  }, [api, tag])
+  }, [tag, api])
 
   return (
     <section>
-      {console.log(`tag: ${tag} api: ${api} photos:`, photos)}
-      {photos?.map((image, i) => (
+      {/* {console.log(`tag: ${tag} api: ${api} photos:`, photos)} */}
+      {photos[tag]?.map((image, i) => (
         <figure key={i}>
           <img src={'/images/' + image.filename} alt={image.title} />
           <figcaption>
