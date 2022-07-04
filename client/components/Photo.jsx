@@ -31,7 +31,7 @@ function Photo() {
   }
 
   return (
-    <figure>
+    <figure className="photo">
       <img src={'/images/' + photo.filename} alt={photo.title} />
       <FigCaption tags={photo.tags} />
     </figure>

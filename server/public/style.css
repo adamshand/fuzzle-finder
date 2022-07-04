@@ -5,7 +5,7 @@
   --hover: goldenrod;
   --photoW: 184px;
   --photoWphone: 90vw;
-  --colGap: 7px;
+  --colGap: 11px;
 }
 * {
   margin: 0;
@@ -38,32 +38,46 @@ a:hover, a:active {
 section {
   display: grid;
   column-gap: var(--colGap);
-  row-gap: 50px;
+  row-gap: calc(var(--colGap) * 1.618);
   grid-template-columns: repeat(auto-fill, var(--photoW));
-  justify-content: center;
+  justify-content:center;
 }
 figure {
+  position: relative;
   width: var(--photoW);
-  height: var(--photoW);
+  height: calc(var(--photoW) * 1.618);
   padding: 5px;
-  border: 2px solid var(--accent);
-}
-figcaption {
-  margin-left: -7px;
-  padding: 3px;
-  width: var(--photoW);
   border: 2px solid var(--accent);
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  background-color: var(--dark);
-  color: var(--dark);
-  font-size: 18px;
-  text-align: center;
 }
 img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+figcaption {
+  position: absolute;
+  right: 5px;
+  bottom: 2px;
+  background-color: var(--dark);
+  padding: .3em;
+  width: calc(var(--photoW) - 13px);
+  color: var(--dark);
+  font-size: 18px;
+  text-align: center;
+}
+figure.photo {
+  margin: auto 11vw;
+  width: 78vw;
+  height: auto;
+  /* max-height: 77vh; */
+}
+figure.photo > img {
+  object-fit: cover;
+}
+figure.photo > figcaption {
+  width: calc(78vw - 10px);
 }
 @media only screen and (max-width: 390px) {
   section {
@@ -74,6 +88,6 @@ img {
     height: var(--photoWphone);
   }  
   figcaption {
-    width: var(--photoWphone);
+    width: calc(var(--photoWphone) - 13px);
   }
 } 
