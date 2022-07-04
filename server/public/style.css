@@ -18,7 +18,7 @@ html {
   background-color: var(--dark);
   color: var(--accent);
   font-family: Iowan Old Style, Apple Garamond, Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-  font-size: 18px;
+  font-size:62.5%;
 }
 header {
   padding-top: 2vh;
@@ -26,14 +26,14 @@ header {
   text-align: center;
 }
 img.logo {
-  width: 74px;
+  width: 80px;
   padding: 5px;
   border: 2px solid var(--accent);
   border-radius: 50%;
 }
 nav {
-  font-size: 2.5rem;
-  margin-bottom: .2em;
+  font-size: 4.5rem;
+  margin-bottom: .1em;
 }
 section {
   display: grid;
@@ -64,7 +64,7 @@ figcaption {
   padding: .3em;
   width: calc(var(--photoW) - 13px);
   color: var(--dark);
-  font-size: 1.3rem;
+  font-size: 2.2rem;
   text-align: center;
 }
 
@@ -79,7 +79,7 @@ a:hover, a:active {
 
 /*** <ByGroup /> ***/
 figure.byGroup > figcaption {
-  font-size: 1.5rem;
+  font-size: 2.7rem;
 }
 
 /*** <Photo /> ***/
@@ -94,7 +94,7 @@ figure.photo > img {
 }
 figure.photo > figcaption {
   width: calc(78vw - 10px);
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 /*** <NavLink /> ***/
@@ -106,20 +106,16 @@ a.active > img.logo {
 }
 nav a.active { 
   padding-top: .1em;
-  /* border-top: 2px solid var(--hover);
-  border-radius:11%; */
   color: var(--hover);
 }
 figcaption a.active {
-  /* color: var(--hover); */
-  /* background-color: bisque; */
   background-color: hsl(0, 0%, 30%);
 }
 
-/*** Single column for small phones in portrait ***/
+/*** Small phones in portrait (single column) ***/
 @media only screen and (max-width: 460px) {
   nav {
-    font-size: 1.3rem;
+    font-size: 2.4rem;
   }
   section {
     grid-template-columns: repeat(auto-fill, var(--photoWphone));
