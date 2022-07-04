@@ -32,7 +32,7 @@ function ByGroup() {
   return (
     <section>
       {groups[group]?.map((tag, i) => (
-        <figure key={i}>
+        <figure className="byGroup" key={i}>
           {/* <Link to={`/tag/${tag}`}> */}
           <img src={`/api/v1/photo/${group}/${tag}`} alt={`${group}/${tag}`} />
           {/* </Link> */}
