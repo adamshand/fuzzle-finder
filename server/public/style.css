@@ -3,7 +3,7 @@
   --light: hsl(0, 0%, 96%);
   --accent: bisque;
   --hover: goldenrod;
-  --photoW: 184px;
+  --photoW: 230px;
   --photoWphone: 90vw;
   --colGap: 11px;
 }
@@ -24,16 +24,15 @@ header {
   font-weight: bolder;
   text-align: center;
 }
+img.logo {
+  width: 74px;
+  padding: 5px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+}
 nav {
   font-size: 30px;
-}
-a:link, a:visited {
-  color: var(--accent);
-  text-decoration: none;
-}
-a:hover, a:active {
-  color: var(--hover);
-  text-decoration: none;
+  margin-bottom: .2em;
 }
 section {
   display: grid;
@@ -64,13 +63,25 @@ figcaption {
   padding: .3em;
   width: calc(var(--photoW) - 13px);
   color: var(--dark);
-  font-size: 18px;
+  font-size: 22px;
   text-align: center;
 }
+
+a:link, a:visited {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover, a:active {
+  color: var(--hover);
+  text-decoration: none;
+}
+
+/*** <Photo /> ***/
 figure.photo {
   margin: auto 11vw;
   width: 78vw;
   height: auto;
+  padding: .5em;
   /* max-height: 77vh; */
 }
 figure.photo > img {
@@ -78,8 +89,33 @@ figure.photo > img {
 }
 figure.photo > figcaption {
   width: calc(78vw - 10px);
+  font-size: x-large;
 }
-@media only screen and (max-width: 390px) {
+
+/*** <NavLink /> ***/
+span.currentTag {
+  color: #EDC956; /* halfway between goldenrold & lightgoldenrod */
+}
+a.active > img.logo {
+  border-color: var(--hover);
+}
+nav a.active { 
+  padding-top: .1em;
+  /* border-top: 2px solid var(--hover);
+  border-radius:11%; */
+  color: var(--hover);
+}
+figcaption a.active {
+  /* color: var(--hover); */
+  /* background-color: bisque; */
+  background-color: hsl(0, 0%, 30%);
+}
+
+/*** Single column for small phones in portrait ***/
+@media only screen and (max-width: 460px) {
+  nav {
+    font-size: 28px;
+  }
   section {
     grid-template-columns: repeat(auto-fill, var(--photoWphone));
   }

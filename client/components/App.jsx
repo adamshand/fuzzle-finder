@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route, Link, NavLink } from 'react-router-dom'
+import { Routes, Route, NavLink } from 'react-router-dom'
 
 import ByTag from './ByTag.jsx'
 import ByGroup from './ByGroup.jsx'
@@ -9,14 +9,14 @@ function App() {
   return (
     <main>
       <header>
-        <Link to="/">
-          <img style={{ width: '64px' }} src="/fuzzler.png" alt="logo of paw" />
-        </Link>
+        <NavLink to="/">
+          <img className="logo" src="/fuzzler.png" alt="logo of paw" />
+        </NavLink>
         <br />
         <nav>
-          <NavLink to="/group/name">name</NavLink> ♡&nbsp;
-          <NavLink to="/group/species">species</NavLink> ♡&nbsp;
-          <NavLink to="/group/with">with</NavLink>
+          <NavLink to="/group/name">names</NavLink> {' ♡ '}
+          <NavLink to="/group/species">species</NavLink> {' ♡ '}
+          <NavLink to="/group/with">contains</NavLink>
         </nav>
       </header>
       <Routes>
@@ -24,7 +24,7 @@ function App() {
         <Route path="/tag/:tag" element={<ByTag />} />
         <Route path="/group/:group" element={<ByGroup />} />
         <Route path="/photo/:id" element={<Photo />} />
-        {/* <Route component={NoMatchPage} /> */}
+        {/* <Route component={NotFound} /> */}
       </Routes>
     </main>
   )
