@@ -16,7 +16,7 @@ function App() {
     return request
       .get(api)
       .then((res) => {
-        setPhotos({ loading: false, photos: res.body })
+        setPhotos({ loading: false, photos: { [tag]: res.body } })
       })
       .catch((err) => {
         setPhotos({ failed: true, message: err.message })
@@ -33,7 +33,7 @@ function App() {
 
   return (
     <section>
-      {photos?.map((photo, i) => (
+      {photos[tag]?.map((photo, i) => (
         <figure key={i}>
           <Link to={`/photo/${photo.id}`}>
             <img src={'/images/' + photo.filename} alt={photo.title} />
@@ -58,3 +58,41 @@ function App() {
 }
 
 export default App
+
+// import Masonry from 'react-masonry-css'
+//
+// return (
+//   <div className="masonary-grid">
+//     <Masonry
+//       breakpointCols={3}
+//       className="masonry-grid"
+//       columnClassName="masonry-column"
+//     >
+//       {photos?.map((photo) => (
+//         <div key={photo.id} className="masonry-column">
+//           <figure>
+//             <img
+//               className="masonry"
+//               src={'/images/' + photo.filename}
+//               alt={photo.title}
+//             />
+//             <figcaption className="masonry">
+//               {photo.tags
+//                 .split(' ')
+//                 .sort()
+//                 .map((group) => group.split('/')[1])
+//                 .map((tag, i) => (
+//                   <Link key={i} to={`/tag/${tag}`}>
+//                     {i + 1 != photo.tags.split(' ').length
+//                       ? `${tag}, `
+//                       : `${tag}`}
+//                   </Link>
+//                 ))}
+//             </figcaption>
+//           </figure>
+//         </div>
+//       ))}
+//     </Masonry>
+//   </div>
+// )
+// }

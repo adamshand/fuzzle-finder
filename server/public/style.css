@@ -35,10 +35,12 @@ a:hover, a:active {
   color: var(--hover);
   text-decoration: none;
 }
+.masonry-grid {
+  display: flex;
+}
+
 section {
   display: grid;
-  /* padding: 2vw; */
-  /* border-top: 2px solid var(--accent); */
   column-gap: var(--colGap);
   row-gap: 50px;
   grid-template-columns: repeat(auto-fill, var(--photoW));
