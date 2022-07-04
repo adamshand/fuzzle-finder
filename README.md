@@ -4,14 +4,14 @@ Takes a folder full of cut animal photos and creates dynamic browsable, filterab
 
 ![screenshot](server/public/screenshot.jpg)
 
-Requirements:
+## Requirements
 
 - Node, Express, React, SQLite, Exifr
 - Photos must have IPTC keyword tags matching `group/tag`:
   - `group` must be {name,species,with}
   - `tag` can be any single word
 
-Features:
+## Features
 
 - Galleries can be filtered by group or tag
 - Galleries are sorted randomly by default (asc/desc date optional)
@@ -19,9 +19,10 @@ Features:
 - Currently active navigation elements (logo, nav, tags) are highlighted
 - Photo metadata (mostly IPTC keywords) imported to SQLite database
 
-Future Features:
+## Future Features
 
 - [ ] sort photos by popularity
+- [ ] remember sort preference
 - [ ] search photos by filename, title, and tag
 - [ ] uploading new photos
 - [ ] add/edit/delete tags
