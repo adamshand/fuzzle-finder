@@ -3,6 +3,7 @@ import { Routes, Route, Link, NavLink } from 'react-router-dom'
 
 import Tags from './Tags.jsx'
 import Groups from './Groups.jsx'
+import Photo from './Photo.jsx'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/" element={<Tags />} />
         <Route path="/tag/:tag" element={<Tags />} />
         <Route path="/group/:group" element={<Groups />} />
+        <Route path="/photo/:id" element={<Photo />} />
         {/* <Route component={NoMatchPage} /> */}
       </Routes>
       {/* <footer>

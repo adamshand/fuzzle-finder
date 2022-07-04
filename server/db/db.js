@@ -1,6 +1,10 @@
 const config = require('./knexfile').development
 const connection = require('knex')(config)
 
+function getPhoto(id, db = connection) {
+  return db('images').select().where('id', id).first()
+}
+
 function getRandomPhotoByTag(group, tag, db = connection) {
   return db('images')
     .select('filename')
@@ -62,6 +66,7 @@ function getPhotosByTag(tag, sort = 'random', limit = 9999, db = connection) {
 }
 
 module.exports = {
+  getPhoto,
   getPhotos,
   getPhotosByTag,
   getGroupTags,

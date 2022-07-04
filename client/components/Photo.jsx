@@ -4,44 +4,45 @@ import { Link, useParams } from 'react-router-dom'
 import request from 'superagent'
 
 function App() {
-  const { tag } = useParams()
-  const [photos, setPhotos] = useState({})
-  const [api, setApi] = useState(`/api/v1/photos?limit=50`)
-
+  const { id } = useParams()
+  const [{ loading, failed, message, photo }, setPhoto] = useState({
+    loading: true,
+  })
   useEffect(() => {
-    if (tag) setApi(`/api/v1/photos/tag/${tag}?limit=50`)
-    // console.log(`useEffect tag: ${tag} api: ${api}`)
+    setPhoto({ loading: true })
     return request
-      .get(api)
+      .get(`/api/v1/photo/${id}`)
       .then((res) => {
-        // setPhotos(res.body)
-        setPhotos({ ...photos, [tag]: res.body })
+        setPhoto({ loading: false, photo: res.body })
       })
-      .catch((err) => console.log(err))
-  }, [tag, api])
+      .catch((err) => {
+        setPhoto({ failed: true, message: err.message })
+      })
+  }, [id])
+
+  if (loading) {
+    return <p>Loading...</p>
+  }
+
+  if (failed) {
+    return <p>Error ${message}</p>
+  }
 
   return (
-    <section>
-      {/* {console.log(`tag: ${tag} api: ${api} photos:`, photos)} */}
-      {photos[tag]?.map((image, i) => (
-        <figure key={i}>
-          <img src={'/images/' + image.filename} alt={image.title} />
-          <figcaption>
-            {image.tags
-              .split(' ')
-              .sort()
-              .map((taggroup) => taggroup.split('/')[1])
-              .map((tag, i) => (
-                <Link key={i} to={`/tag/${tag}`}>
-                  {i + 1 != image.tags.split(' ').length
-                    ? `${tag}, `
-                    : `${tag}`}
-                </Link>
-              ))}
-          </figcaption>
-        </figure>
-      ))}
-    </section>
+    <figure>
+      <img src={'/images/' + photo.filename} alt={photo.title} />
+      <figcaption>
+        {photo.tags
+          .split(' ')
+          .sort()
+          .map((group) => group.split('/')[1])
+          .map((tag, i) => (
+            <Link key={i} to={`/tag/${tag}`}>
+              {i + 1 != photo.tags.split(' ').length ? `${tag}, ` : `${tag}`}
+            </Link>
+          ))}
+      </figcaption>
+    </figure>
   )
 }
 

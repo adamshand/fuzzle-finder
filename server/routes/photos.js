@@ -8,7 +8,20 @@ const router = express.Router()
 // https://stackoverflow.com/questions/56386307/loading-of-a-resource-blocked-by-content-security-policy
 // res.header('Content-Security-Policy', 'img-src self')
 
-// /api/v1
+// Base API Route: /api/v1
+
+router.get('/photo/:id', (req, res) => {
+  const { id } = req.params
+  db.getPhoto(id)
+    .then((photo) => {
+      res.json(photo)
+    })
+    .catch((err) => {
+      console.error(err.message)
+      res.status(500).send('Server error')
+    })
+})
+
 router.get('/photo/:group/:tag', (req, res) => {
   const { group, tag } = req.params
   db.getRandomPhotoByTag(group, tag)

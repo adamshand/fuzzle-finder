@@ -5,28 +5,39 @@ import request from 'superagent'
 
 function App() {
   const { tag } = useParams()
-  const [photos, setPhotos] = useState({})
-  const [api, setApi] = useState(`/api/v1/photos?limit=50`)
+  const [{ loading, failed, message, photos }, setPhotos] = useState({
+    loading: true,
+  })
+  let api = `/api/v1/photos?limit=50`
 
   useEffect(() => {
-    if (tag) setApi(`/api/v1/photos/tag/${tag}?limit=50`)
-    // console.log(`useEffect tag: ${tag} api: ${api}`)
+    if (tag) api = `/api/v1/photos/tag/${tag}?limit=50`
+
     return request
       .get(api)
       .then((res) => {
-        // setPhotos(res.body)
-        setPhotos({ ...photos, [tag]: res.body })
+        setPhotos({ loading: false, photos: res.body })
       })
-      .catch((err) => console.log(err))
-  }, [tag, api])
+      .catch((err) => {
+        setPhotos({ failed: true, message: err.message })
+      })
+  }, [tag])
+
+  if (loading) {
+    return <p>Loading...</p>
+  }
+
+  if (failed) {
+    return <p>Error ${message}</p>
+  }
 
   return (
     <section>
-      {/* {console.log(`tag: ${tag} api: ${api} photos:`, photos)} */}
-      {photos[tag]?.map((photo, i) => (
+      {photos?.map((photo, i) => (
         <figure key={i}>
-          {console.log(photo)}
-          <img src={'/images/' + photo.filename} alt={photo.title} />
+          <Link to={`/photo/${photo.id}`}>
+            <img src={'/images/' + photo.filename} alt={photo.title} />
+          </Link>
           <figcaption>
             {photo.tags
               .split(' ')

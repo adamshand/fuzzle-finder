@@ -6,23 +6,32 @@ import request from 'superagent'
 
 function App() {
   const { group } = useParams()
-  const [groups, setGroups] = useState({})
-  const [api, setApi] = useState()
+  const [{ loading, failed, message, groups }, setGroups] = useState({
+    loading: true,
+  })
 
   useEffect(() => {
-    setApi(`/api/v1/group/${group}`)
     return request
-      .get(api)
+      .get(`/api/v1/group/${group}`)
       .then((res) => {
-        setGroups({ ...groups, [group]: res.body })
-        console.log(groups)
+        setGroups({ loading: false, groups: { [group]: res.body } })
+      })
+      .catch((err) => {
+        setGroups({ failed: true, message: err.message })
       })
       .catch((err) => console.log(err))
-  }, [api, group])
+  }, [group])
+
+  if (loading) {
+    return <p>Loading...</p>
+  }
+
+  if (failed) {
+    return <p>Error ${message}</p>
+  }
 
   return (
     <section>
-      {/* {console.log(`useEffect group: ${group} url: ${api} groups"`, groups)} */}
       {groups[group]?.map((tag, i) => (
         <figure key={i}>
           <Link to={`/tag/${tag}`}>
