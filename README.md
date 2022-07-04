@@ -2,6 +2,8 @@
 
 Takes a folder full of cut animal photos and creates dynamic browsable, filterable, and sortable galleries.
 
+![screenshot](server/public/screenshot.jpg)
+
 Requirements:
 
 - Node, Express, React, SQLite, Exifr
