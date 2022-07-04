@@ -1,6 +1,6 @@
 {
-  "name": "fuzzle_finder",
-  "version": "0.1.2",
+  "name": "the_fuzzle",
+  "version": "2.0.1.",
   "description": "A finder for all the best things",
   "repository": "https://github.com/adamshand/fuzzle-finder",
   "main": "server/index.js",
@@ -33,13 +33,11 @@
     ]
   },
   "dependencies": {
-    "@egjs/react-infinitegrid": "^4.5.0",
     "exifr": "^7.1.3",
     "express": "^4.17.2",
     "knex": "^2.1.0",
     "lodash": "^4.17.21",
     "react-masonry-css": "^1.0.16",
-    "react-responsive-masonry": "^2.1.4",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
     "sqlite3": "^5.0.8"
