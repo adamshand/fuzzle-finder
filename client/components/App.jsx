@@ -1,8 +1,8 @@
 import React from 'react'
 import { Routes, Route, Link, NavLink } from 'react-router-dom'
 
-import Tags from './Tags.jsx'
-import Groups from './Groups.jsx'
+import ByTag from './ByTag.jsx'
+import ByGroup from './ByGroup.jsx'
 import Photo from './Photo.jsx'
 
 function App() {
@@ -20,17 +20,12 @@ function App() {
         </nav>
       </header>
       <Routes>
-        <Route path="/" element={<Tags />} />
-        <Route path="/tag/:tag" element={<Tags />} />
-        <Route path="/group/:group" element={<Groups />} />
+        <Route path="/" element={<ByTag />} />
+        <Route path="/tag/:tag" element={<ByTag />} />
+        <Route path="/group/:group" element={<ByGroup />} />
         <Route path="/photo/:id" element={<Photo />} />
         {/* <Route component={NoMatchPage} /> */}
       </Routes>
-      {/* <footer>
-        <a href="https://copyheart.org/">
-          ♡ 2022 (like cuddles) copying is an act of love. please share.
-        </a>
-      </footer> */}
     </main>
   )
 }

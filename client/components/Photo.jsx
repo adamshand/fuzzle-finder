@@ -3,7 +3,9 @@ import { Link, useParams } from 'react-router-dom'
 
 import request from 'superagent'
 
-function App() {
+import FigCaption from './FigCaption.jsx'
+
+function Photo() {
   const { id } = useParams()
   const [{ loading, failed, message, photo }, setPhoto] = useState({
     loading: true,
@@ -31,19 +33,9 @@ function App() {
   return (
     <figure>
       <img src={'/images/' + photo.filename} alt={photo.title} />
-      <figcaption>
-        {photo.tags
-          .split(' ')
-          .sort()
-          .map((group) => group.split('/')[1])
-          .map((tag, i) => (
-            <Link key={i} to={`/tag/${tag}`}>
-              {i + 1 != photo.tags.split(' ').length ? `${tag}, ` : `${tag}`}
-            </Link>
-          ))}
-      </figcaption>
+      <FigCaption tags={photo.tags} />
     </figure>
   )
 }
 
-export default App
+export default Photo

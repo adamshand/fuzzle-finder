@@ -35,10 +35,6 @@ a:hover, a:active {
   color: var(--hover);
   text-decoration: none;
 }
-.masonry-grid {
-  display: flex;
-}
-
 section {
   display: grid;
   column-gap: var(--colGap);
@@ -69,13 +65,6 @@ img {
   height: 100%;
   object-fit: cover;
 }
-footer {
-  margin-top: 4vh;
-  font-size: 16px;
-  font-weight: lighter;
-  text-align: center;
-}
-
 @media only screen and (max-width: 390px) {
   section {
     grid-template-columns: repeat(auto-fill, var(--photoWphone));
