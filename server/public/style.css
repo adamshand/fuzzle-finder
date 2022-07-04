@@ -17,7 +17,6 @@ html {
   height: 100vh;
   background-color: var(--dark);
   color: var(--accent);
-  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,  sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'; */
   font-family: Iowan Old Style, Apple Garamond, Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   font-size: 18px;
 }
@@ -33,7 +32,7 @@ img.logo {
   border-radius: 50%;
 }
 nav {
-  font-size: 2.3rem;
+  font-size: 2.5rem;
   margin-bottom: .2em;
 }
 section {
@@ -85,12 +84,10 @@ figure.byGroup > figcaption {
 
 /*** <Photo /> ***/
 figure.photo {
-  /* margin: auto 11vw;
+  margin: auto 11vw;
   width: 78vw;
-  height: auto;*/
+  height: auto;
   padding: .5em; 
-  max-width: 90%;
-  max-height: 80%;
 }
 figure.photo > img {
   object-fit: cover;
