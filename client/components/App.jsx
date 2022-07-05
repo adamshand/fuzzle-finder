@@ -30,10 +30,10 @@ function App() {
           <div className="sort">
             {/* <label htmlFor="sort">Sort by</label> */}
             <select name="sort" defaultValue={order} onChange={handleChange}>
-              <option value="random">sort by: random</option>
-              <option value="date">sort by: date</option>
-              <option value="rdate">sort by: date (reverse)</option>
-              <option value="views">sort by: popularity</option>
+              <option value="random">sort by: random ✨</option>
+              <option value="views">sort by: views ⬇️</option>
+              <option value="date">sort by: date ⬆️</option>
+              <option value="rdate">sort by: date ⬇️</option>
             </select>
           </div>
         </nav>

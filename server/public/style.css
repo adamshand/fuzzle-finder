@@ -38,10 +38,15 @@ nav {
 }
 div.sort {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 0px;
+  right: 0px;
   margin-right: 2vw;
   font-size: 1em;
+}
+div.sort > select {
+  border: 0;
+  background-color: var(--dark);
+  color: var(--accent);
 }
 section {
   display: grid;
