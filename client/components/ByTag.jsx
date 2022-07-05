@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 import request from 'superagent'
 
@@ -10,10 +11,14 @@ function ByTag() {
   const [{ loading, failed, message, photos }, setPhotos] = useState({
     loading: true,
   })
-  let api = `/api/v1/photos?limit=50`
+
+  const { order } = useSelector((state) => state.sort)
+
+  let api = `/api/v1/photos?limit=50&sort=${order}`
 
   useEffect(() => {
-    if (tag) api = `/api/v1/photos/tag/${tag}?limit=50`
+    console.log(api)
+    if (tag) api = `/api/v1/photos/tag/${tag}?limit=50&sort=${order}`
 
     return request
       .get(api)
@@ -23,7 +28,7 @@ function ByTag() {
       .catch((err) => {
         setPhotos({ failed: true, message: err.message })
       })
-  }, [tag])
+  }, [tag, order])
 
   if (loading) {
     return <p>Loading...</p>

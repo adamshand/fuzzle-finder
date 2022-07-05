@@ -39,6 +39,7 @@
     "knex": "^2.1.0",
     "lodash": "^4.17.21",
     "react-masonry-css": "^1.0.16",
+    "react-redux": "^8.0.2",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
     "sqlite3": "^5.0.8"
