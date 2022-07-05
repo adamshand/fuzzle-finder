@@ -1,6 +1,10 @@
 const config = require('./knexfile').development
 const connection = require('knex')(config)
 
+function updatePhotoCounter(id, db = connection) {
+  return db('images').where('id', id).increment('views', 1)
+}
+
 function getPhoto(id, db = connection) {
   return db('images').select().where('id', id).first()
 }
@@ -35,6 +39,8 @@ function getGroupTags(group, db = connection) {
 
 function getPhotos(sort = 'random', limit = 9999, db = connection) {
   switch (sort) {
+    case 'views':
+      return db('images').select().orderBy('views', 'desc').limit(limit)
     case 'date':
       return db('images').select().orderBy('date', 'desc').limit(limit)
     case 'rdate':
@@ -47,6 +53,12 @@ function getPhotos(sort = 'random', limit = 9999, db = connection) {
 function getPhotosByTag(tag, sort = 'random', limit = 9999, db = connection) {
   //TODO need to sanitise $tag & sort (?)
   switch (sort) {
+    case 'views':
+      return db('images')
+        .where('tags', 'like', `%/${tag}%`)
+        .where('views', '>', 0)
+        .orderBy('views', 'desc')
+        .limit(limit)
     case 'date':
       return db('images')
         .where('tags', 'like', `%/${tag}%`)
@@ -66,6 +78,7 @@ function getPhotosByTag(tag, sort = 'random', limit = 9999, db = connection) {
 }
 
 module.exports = {
+  updatePhotoCounter,
   getPhoto,
   getPhotos,
   getPhotosByTag,

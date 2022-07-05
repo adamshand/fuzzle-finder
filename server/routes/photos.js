@@ -12,6 +12,13 @@ const router = express.Router()
 
 router.get('/photo/:id', (req, res) => {
   const { id } = req.params
+  db.updatePhotoCounter(id)
+    .then(() => true)
+    .catch((err) => {
+      console.error(err.message)
+      res.status(500).send('Server error')
+    })
+
   db.getPhoto(id)
     .then((photo) => {
       res.json(photo)
