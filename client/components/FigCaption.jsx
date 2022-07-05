@@ -1,8 +1,11 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function FigCaption(props) {
   const { tags, currentTag } = props
+
+  const printTags = (i, tag, allTags) =>
+    allTags.length !== i + 1 ? <>{tag}, </> : <>{tag}</>
 
   return (
     <figcaption>
@@ -13,12 +16,12 @@ function FigCaption(props) {
         // .filter((tag) => tag !== currentTag)
         .map((tag, i, allTags) =>
           tag !== currentTag ? (
-            <NavLink key={i} to={`/tag/${tag}`}>
-              {allTags.length !== i + 1 ? <>{tag}, </> : <>{tag}</>}
-            </NavLink>
+            <Link key={i} to={`/tag/${tag}`}>
+              {printTags(i, tag, allTags)}
+            </Link>
           ) : (
-            <span className="currentTag" key={i}>
-              {allTags.length !== i + 1 ? <>{tag}, </> : <>{tag}</>}
+            <span key={i} className="currentTag">
+              {printTags(i, tag, allTags)}
             </span>
           )
         )}

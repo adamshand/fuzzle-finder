@@ -27,3 +27,12 @@ Takes a folder full of cut animal photos and creates dynamic browsable, filterab
 - [ ] uploading new photos
 - [ ] add/edit/delete tags
 - [ ] automatically optimise photos (resize thumbnails)
+- [ ] create Docker image
+- [ ] add tests
+
+## Installation
+
+- Put tagged photos into `server/public/images`
+- Run `npm install`
+- Run `npm run knex migrate:latest`
+- Run `node server/db/updatedb.js`
