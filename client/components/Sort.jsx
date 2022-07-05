@@ -8,8 +8,6 @@ function Sort() {
   const { order } = useSelector((state) => state.sort)
   const dispatch = useDispatch()
 
-  console.log(`path:`, pathname)
-
   function handleChange(e) {
     e.preventDefault()
     dispatch(changeOrder(e.target.value))

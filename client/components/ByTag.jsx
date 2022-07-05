@@ -17,7 +17,6 @@ function ByTag() {
   let api = `/api/v1/photos?limit=50&sort=${order}`
 
   useEffect(() => {
-    console.log(api)
     if (tag) api = `/api/v1/photos/tag/${tag}?limit=50&sort=${order}`
 
     return request
