@@ -3,7 +3,7 @@
   --light: hsl(0, 0%, 96%);
   --accent: bisque;
   --hover: goldenrod;
-  --photoW: 230px;
+  --photoW: 350px;
   --photoWphone: 90vw;
   --colGap: 11px;
 }
@@ -39,14 +39,14 @@ nav {
 div.sort {
   position: absolute;
   top: 0px;
-  right: 0px;
+  right: 5vw;
   margin-right: 2vw;
-  font-size: 1em;
 }
 div.sort > select {
   border: 0;
   background-color: var(--dark);
   color: var(--accent);
+  font-size: 2rem;
 }
 section {
   display: grid;
@@ -58,7 +58,7 @@ section {
 figure {
   position: relative;
   width: var(--photoW);
-  height: calc(var(--photoW) * 1.618);
+  height: calc(var(--photoW));
   padding: 5px;
   border: 2px solid var(--accent);
   border-bottom-left-radius: 8px;
