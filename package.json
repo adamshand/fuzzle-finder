@@ -1,6 +1,6 @@
 {
   "name": "the_fuzzle",
-  "version": "2.0.1.",
+  "version": "2.0.1",
   "description": "A finder for all the best things",
   "repository": "https://github.com/adamshand/fuzzle-finder",
   "main": "server/index.js",
@@ -33,6 +33,7 @@
     ]
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.3",
     "exifr": "^7.1.3",
     "express": "^4.17.2",
     "knex": "^2.1.0",
