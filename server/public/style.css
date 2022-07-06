@@ -3,7 +3,7 @@
   --light: hsl(0, 0%, 96%);
   --accent: bisque;
   --hover: goldenrod;
-  --photoW: 350px;
+  --photoW: 320px;
   --photoWphone: 90vw;
   --colGap: 11px;
 }
@@ -58,7 +58,7 @@ section {
 figure {
   position: relative;
   width: var(--photoW);
-  height: calc(var(--photoW));
+  height: var(--photoW);
   padding: 5px;
   border: 2px solid var(--accent);
   border-bottom-left-radius: 8px;

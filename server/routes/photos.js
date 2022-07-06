@@ -1,8 +1,10 @@
 const express = require('express')
+const router = express.Router()
+const { check, validationResult } = require('express-validator')
+
 const path = require('path')
 
 const db = require('../db/db')
-const router = express.Router()
 // const { shuffle } = require('lodash')
 
 // https://stackoverflow.com/questions/56386307/loading-of-a-resource-blocked-by-content-security-policy
@@ -10,23 +12,29 @@ const router = express.Router()
 
 // Base API Route: /api/v1
 
-router.get('/photo/:id', (req, res) => {
+router.get('/photo/:id', [check('id').isNumeric()], (req, res) => {
   const { id } = req.params
-  db.updatePhotoCounter(id)
-    .then(() => true)
-    .catch((err) => {
-      console.error(err.message)
-      res.status(500).send('Server error')
-    })
+  const [error] = validationResult(req).errors
+  console.log(error)
+  if (error.length === 0) {
+    db.updatePhotoCounter(id)
+      .then(() => true)
+      .catch((err) => {
+        console.error(err.message)
+        res.status(500).send('Server error')
+      })
 
-  db.getPhoto(id)
-    .then((photo) => {
-      res.json(photo)
-    })
-    .catch((err) => {
-      console.error(err.message)
-      res.status(500).send('Server error')
-    })
+    db.getPhoto(id)
+      .then((photo) => {
+        res.json(photo)
+      })
+      .catch((err) => {
+        console.error(err.message)
+        res.status(500).send('Server error')
+      })
+  } else {
+    res.status(400).send(`Invalid photo ${error.param} "${error.value}"`)
+  }
 })
 
 router.get('/photo/:group/:tag', (req, res) => {
