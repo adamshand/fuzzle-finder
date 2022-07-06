@@ -12,28 +12,22 @@ const db = require('../db/db')
 
 // Base API Route: /api/v1
 
-router.get('/photo/:id', [check('id').isNumeric()], (req, res) => {
+router.get('/photo/:id', [check('id').isNumeric()], async (req, res) => {
   const { id } = req.params
-  const [error] = validationResult(req).errors
-  console.log(error)
-  if (error.length === 0) {
-    db.updatePhotoCounter(id)
-      .then(() => true)
-      .catch((err) => {
-        console.error(err.message)
-        res.status(500).send('Server error')
-      })
 
-    db.getPhoto(id)
-      .then((photo) => {
-        res.json(photo)
-      })
-      .catch((err) => {
-        console.error(err.message)
-        res.status(500).send('Server error')
-      })
-  } else {
-    res.status(400).send(`Invalid photo ${error.param} "${error.value}"`)
+  try {
+    validationResult(req).throw()
+  } catch (err) {
+    res.status(400).send(`Invalid URL parameter.`)
+  }
+
+  try {
+    await db.updatePhotoCounter(id)
+    const result = await db.getPhoto(id)
+    res.json(result)
+  } catch (err) {
+    console.error(err.message)
+    res.status(500).send('Server error')
   }
 })
 
