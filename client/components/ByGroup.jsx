@@ -34,7 +34,10 @@ function ByGroup() {
       {groups[group]?.map((tag, i) => (
         <figure className="byGroup" key={i}>
           {/* <Link to={`/tag/${tag}`}> */}
-          <img src={`/api/v1/photo/${group}/${tag}`} alt={`${group}/${tag}`} />
+          <img
+            src={`/api/v1/randomPhoto/${group}/${tag}`}
+            alt={`${group}/${tag}`}
+          />
           {/* </Link> */}
           <figcaption>
             <Link to={`/tag/${tag}`}>{tag}</Link>

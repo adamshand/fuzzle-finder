@@ -50,8 +50,8 @@ async function getExif(filename) {
     tags = tags.toLowerCase()
   } else {
     tags = tags
-      .filter((x) => !['Type/Selfie', 'Flagged'].includes(x))
-      .map((x) => x.toLowerCase())
+      .map((tag) => tag.toLowerCase())
+      .filter((tag) => ['name', 'species', 'with'].includes(tag.split('/')[0]))
       .join(' ')
   }
   console.log({ filename, title, date, tags })

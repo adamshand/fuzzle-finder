@@ -42,7 +42,11 @@ function ByTag() {
       {photos[tag]?.map((photo, i) => (
         <figure key={i}>
           <Link to={`/photo/${photo.id}`}>
-            <img src={'/images/' + photo.filename} alt={photo.title} />
+            <img
+              src={'/images/' + photo.filename}
+              alt={photo.title}
+              title={photo.title}
+            />
           </Link>
           <FigCaption currentTag={tag} tags={photo.tags} />
         </figure>

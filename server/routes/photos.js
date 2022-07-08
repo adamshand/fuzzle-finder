@@ -1,3 +1,4 @@
+const { group } = require('console')
 const express = require('express')
 const router = express.Router()
 const { check, validationResult } = require('express-validator')
@@ -5,10 +6,18 @@ const { check, validationResult } = require('express-validator')
 const path = require('path')
 
 const db = require('../db/db')
-// const { shuffle } = require('lodash')
 
 // https://stackoverflow.com/questions/56386307/loading-of-a-resource-blocked-by-content-security-policy
 // res.header('Content-Security-Policy', 'img-src self')
+
+// API endpoints for refactor
+// GET /photos
+// GET /photos/random?tag=:tag
+// GET /photos/:id
+// GET /photos/:id/like
+// GET /tags/:tag/photos
+// GET /groups
+// GET /groups/:group
 
 // Base API Route: /api/v1
 
@@ -31,7 +40,7 @@ router.get('/photo/:id', [check('id').isNumeric()], async (req, res) => {
   }
 })
 
-router.get('/photo/:group/:tag', (req, res) => {
+router.get('/randomPhoto/:group/:tag', (req, res) => {
   const { group, tag } = req.params
   db.getRandomPhotoByTag(group, tag)
     .then((photo) => {
@@ -44,10 +53,6 @@ router.get('/photo/:group/:tag', (req, res) => {
       res.status(500).send('Server error')
     })
 })
-
-// router.get('/group', (req, res) => {
-//   res.redirect('/')
-// })
 
 router.get('/group/:group', (req, res) => {
   const { group } = req.params

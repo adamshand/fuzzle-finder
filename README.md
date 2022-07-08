@@ -14,20 +14,22 @@ Takes a folder full of cut animal photos and creates dynamic browsable, filterab
 ## Features
 
 - Galleries can be filtered by group or tag
-- Galleries are sorted randomly by default (asc/desc date optional)
+- Galleries are sorted randomly by default (desc views & asc/desc date optional)
+- Remember sorting preference
 - Lightbox for single image display
 - Currently active navigation elements (logo, nav, tags) are highlighted
 - Photo metadata (mostly IPTC keywords) imported to SQLite database
 
 ## Future Features
 
-- [ ] sort photos by popularity
-- [ ] remember sort preference
 - [ ] search photos by filename, title, and tag
+- [ ] use hash for photo id and duplicate detection
 - [ ] uploading new photos
 - [ ] add/edit/delete tags
 - [ ] automatically optimise photos (resize thumbnails)
-- [ ] create Docker image
+- [ ] serve images cropped to arbitrary dimensions ([example](https://random.imagecdn.app/v1/docs))
+- [ ] create REST endpoints that follow best practice
+- [ ] create Docker image and deploy to server
 - [ ] add tests
 
 ## Installation

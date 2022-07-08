@@ -17,10 +17,10 @@ function Sort() {
     <div className="sort">
       {['', 'tag'].includes(pathname.split('/')[1]) && (
         <select name="sort" defaultValue={order} onChange={handleChange}>
-          <option value="random">✨🔀</option>
-          <option value="views">🔥⬇️</option>
-          <option value="rdate">📅 ⬆️</option>
-          <option value="date">📅 ⬇️</option>
+          <option value="random">random</option>
+          <option value="views">views ⬇️</option>
+          <option value="rdate">date ⬆️</option>
+          <option value="date">date ⬇️</option>
         </select>
       )}
     </div>
