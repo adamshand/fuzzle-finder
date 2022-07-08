@@ -1,4 +1,3 @@
-const { group } = require('console')
 const express = require('express')
 const router = express.Router()
 const { check, validationResult } = require('express-validator')
@@ -12,7 +11,7 @@ const db = require('../db/db')
 
 // API endpoints for refactor
 // GET /photos
-// GET /photos/random?tag=:tag
+// GET /photos/random?filter=group/tag
 // GET /photos/:id
 // GET /photos/:id/like
 // GET /tags/:tag/photos
