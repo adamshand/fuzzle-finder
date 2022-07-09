@@ -19,6 +19,7 @@ Takes a folder full of cut animal photos and creates dynamic browsable, filterab
 - Lightbox for single image display
 - Currently active navigation elements (logo, nav, tags) are highlighted
 - Photo metadata (mostly IPTC keywords) imported to SQLite database
+- Supports CSS3 native masonry galleries ([currently Firefox only](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Masonry_Layout))
 
 ## Future Features
 
