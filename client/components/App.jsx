@@ -13,13 +13,12 @@ function App() {
         <NavLink to="/">
           <img className="logo" src="/fuzzler.png" alt="logo of paw" />
         </NavLink>
-        <br />
         <nav>
           <NavLink to="/group/name">names</NavLink> {' ♡ '}
           <NavLink to="/group/species">species</NavLink> {' ♡ '}
           <NavLink to="/group/with">contains</NavLink>
-          <Sort />
         </nav>
+        <Sort />
       </header>
       <Routes>
         <Route path="/" element={<ByTag />} />

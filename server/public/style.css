@@ -5,7 +5,7 @@
   --hover: goldenrod;
   --photoW: 320px;
   --photoWphone: 90vw;
-  --colGap: 11px;
+  --colGap: 9px;
 }
 * {
   margin: 0;
@@ -22,7 +22,7 @@ html {
 }
 header {
   position: relative;
-  padding-top: 2vh;
+  padding-top: 30px;
   font-weight: bolder;
   text-align: center;
 }
@@ -38,8 +38,8 @@ nav {
 }
 div.sort {
   position: absolute;
-  top: 0px;
-  right: 5vw;
+  top: 30px;
+  right: 2.5vw;
   margin-right: 2vw;
 }
 div.sort > select {
@@ -51,7 +51,7 @@ div.sort > select {
 section {
   display: grid;
   column-gap: var(--colGap);
-  row-gap: calc(var(--colGap) * 1.618);
+  row-gap: var(--colGap);
   grid-template-columns: repeat(auto-fill, var(--photoW));
   justify-content:center;
 }
@@ -123,6 +123,22 @@ nav a.active {
 }
 figcaption a.active {
   background-color: hsl(0, 0%, 30%);
+}
+
+/*** Only Firefox supports native masonry ***/
+@supports (grid-template-rows: masonry) {
+  section {
+    grid-template-rows: masonry;
+  }
+  figure {
+    height: auto;  
+  }
+  figcaption {
+    /* display: none; */
+    position: relative;
+    right: 0;
+    bottom: 0;
+  }
 }
 
 /*** Small phones in portrait (single column) ***/
