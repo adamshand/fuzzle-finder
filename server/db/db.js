@@ -1,15 +1,18 @@
 const config = require('./knexfile').development
 const connection = require('knex')(config)
 
-function updatePhotoCounter(id, db = connection) {
+function incrementPhotoCounter(id, db = connection) {
+  //TODO need to sanitise params
   return db('images').where('id', id).increment('views', 1)
 }
 
 function getPhoto(id, db = connection) {
+  //TODO need to sanitise params
   return db('images').select().where('id', id).first()
 }
 
 function getRandomPhotoByTag(group, tag, db = connection) {
+  //TODO need to sanitise params
   return db('images')
     .select('filename')
     .where('tags', 'like', `%${group}/${tag}%`)
@@ -20,7 +23,7 @@ function getRandomPhotoByTag(group, tag, db = connection) {
 
 function getGroupTags(group, db = connection) {
   const regex = new RegExp(group + '/', 'gi')
-  //TODO need to sanitise $group
+  //TODO need to sanitise params
   return db('images')
     .select('tags')
     .where('tags', 'like', `%${group}/%`)
@@ -37,26 +40,12 @@ function getGroupTags(group, db = connection) {
     })
 }
 
-function getPhotos(sort = 'random', limit = 9999, db = connection) {
-  switch (sort) {
-    case 'views':
-      return db('images').select().orderBy('views', 'desc').limit(limit)
-    case 'date':
-      return db('images').select().orderBy('date', 'desc').limit(limit)
-    case 'rdate':
-      return db('images').select().orderBy('date', 'asc').limit(limit)
-    default:
-      return db('images').select().orderByRaw('random()').limit(limit)
-  }
-}
-
 function getPhotosByTag(tag, sort = 'random', limit = 9999, db = connection) {
-  //TODO need to sanitise $tag & sort (?)
+  //TODO need to sanitise params
   switch (sort) {
     case 'views':
       return db('images')
         .where('tags', 'like', `%/${tag}%`)
-        .where('views', '>', 0)
         .orderBy('views', 'desc')
         .limit(limit)
     case 'date':
@@ -77,8 +66,22 @@ function getPhotosByTag(tag, sort = 'random', limit = 9999, db = connection) {
   }
 }
 
+function getPhotos(sort = 'random', limit = 9999, db = connection) {
+  //TODO need to sanitise params
+  switch (sort) {
+    case 'views':
+      return db('images').select().orderBy('views', 'desc').limit(limit)
+    case 'date':
+      return db('images').select().orderBy('date', 'desc').limit(limit)
+    case 'rdate':
+      return db('images').select().orderBy('date', 'asc').limit(limit)
+    default:
+      return db('images').select().orderByRaw('random()').limit(limit)
+  }
+}
+
 module.exports = {
-  updatePhotoCounter,
+  incrementPhotoCounter,
   getPhoto,
   getPhotos,
   getPhotosByTag,

@@ -13,7 +13,6 @@ function FigCaption(props) {
         .split(' ')
         .sort()
         .map((group) => group.split('/')[1])
-        // .filter((tag) => tag !== currentTag)
         .map((tag, i, allTags) =>
           tag !== currentTag ? (
             <Link key={i} to={`/tag/${tag}`}>

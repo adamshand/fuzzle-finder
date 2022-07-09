@@ -30,7 +30,7 @@ router.get('/photo/:id', [check('id').isNumeric()], async (req, res) => {
   }
 
   try {
-    await db.updatePhotoCounter(id)
+    await db.incrementPhotoCounter(id)
     const result = await db.getPhoto(id)
     res.json(result)
   } catch (err) {
