@@ -10,6 +10,7 @@ function ByTag() {
   const { tag } = useParams()
   const [{ loading, failed, message, photos }, setPhotos] = useState({
     loading: true,
+    photos: {},
   })
 
   const { order } = useSelector((state) => state.sort)
@@ -17,7 +18,7 @@ function ByTag() {
   let api = `/api/v1/photos?limit=50&sort=${order}`
 
   useEffect(() => {
-    if (tag) api = `/api/v1/photos/tag/${tag}?limit=50&sort=${order}`
+    if (tag) api = `/api/v1/tags/${tag}/photos?limit=50&sort=${order}`
 
     return request
       .get(api)

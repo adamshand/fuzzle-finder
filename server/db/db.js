@@ -2,17 +2,14 @@ const config = require('./knexfile').development
 const connection = require('knex')(config)
 
 function incrementPhotoCounter(id, db = connection) {
-  //TODO need to sanitise params
   return db('images').where('id', id).increment('views', 1)
 }
 
 function getPhoto(id, db = connection) {
-  //TODO need to sanitise params
   return db('images').select().where('id', id).first()
 }
 
 function getRandomPhotoByTag(group, tag, db = connection) {
-  //TODO need to sanitise params
   return db('images')
     .select('filename')
     .where('tags', 'like', `%${group}/${tag}%`)
@@ -23,7 +20,6 @@ function getRandomPhotoByTag(group, tag, db = connection) {
 
 function getGroupTags(group, db = connection) {
   const regex = new RegExp(group + '/', 'gi')
-  //TODO need to sanitise params
   return db('images')
     .select('tags')
     .where('tags', 'like', `%${group}/%`)
@@ -36,12 +32,10 @@ function getGroupTags(group, db = connection) {
         .filter((g) => g.includes(group + '/'))
         .map((group) => group.replace(regex, ''))
         .filter((v, i, a) => a.indexOf(v) === i)
-      // .sort()
     })
 }
 
 function getPhotosByTag(tag, sort = 'random', limit = 9999, db = connection) {
-  //TODO need to sanitise params
   switch (sort) {
     case 'views':
       return db('images')
@@ -67,7 +61,6 @@ function getPhotosByTag(tag, sort = 'random', limit = 9999, db = connection) {
 }
 
 function getPhotos(sort = 'random', limit = 9999, db = connection) {
-  //TODO need to sanitise params
   switch (sort) {
     case 'views':
       return db('images').select().orderBy('views', 'desc').limit(limit)

@@ -7,11 +7,12 @@ function ByGroup() {
   const { group } = useParams()
   const [{ loading, failed, message, groups }, setGroups] = useState({
     loading: true,
+    groups: {},
   })
 
   useEffect(() => {
     return request
-      .get(`/api/v1/group/${group}`)
+      .get(`/api/v1/groups/${group}/tags`)
       .then((res) => {
         setGroups({ loading: false, groups: { [group]: res.body } })
       })
@@ -33,12 +34,12 @@ function ByGroup() {
     <section>
       {groups[group]?.map((tag, i) => (
         <figure className="byGroup" key={i}>
-          {/* <Link to={`/tag/${tag}`}> */}
-          <img
-            src={`/api/v1/randomPhoto/${group}/${tag}`}
-            alt={`${group}/${tag}`}
-          />
-          {/* </Link> */}
+          <Link to={`/tag/${tag}`}>
+            <img
+              src={`/api/v1/photos/random/${group}/${tag}`}
+              alt={`${group}/${tag}`}
+            />
+          </Link>
           <figcaption>
             <Link to={`/tag/${tag}`}>{tag}</Link>
           </figcaption>

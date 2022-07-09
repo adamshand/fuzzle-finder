@@ -9,11 +9,12 @@ function Photo() {
   const { id } = useParams()
   const [{ loading, failed, message, photo }, setPhoto] = useState({
     loading: true,
+    photos: {},
   })
   useEffect(() => {
     setPhoto({ loading: true })
     return request
-      .get(`/api/v1/photo/${id}`)
+      .get(`/api/v1/photos/${id}`)
       .then((res) => {
         setPhoto({ loading: false, photo: res.body })
       })

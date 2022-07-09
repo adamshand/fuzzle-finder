@@ -11,21 +11,32 @@ const db = require('../db/db')
 
 // API endpoints for refactor
 // GET /photos
-// GET /photos/random?filter=group/tag
+// GET /photos/random/group/tag
 // GET /photos/:id
-// GET /photos/:id/like
 // GET /tags/:tag/photos
-// GET /groups
-// GET /groups/:group
+// GET /groups/:group/tags
 
 // Base API Route: /api/v1
 
-router.get('/photo/:id', [check('id').isNumeric()], async (req, res) => {
+router.get('/photos', (req, res) => {
+  const { sort, limit } = req.query
+  db.getPhotos(sort, limit)
+    .then((data) => {
+      res.json(data)
+    })
+    .catch((err) => {
+      console.error(err.message)
+      res.status(500).send('Server error')
+    })
+})
+
+router.get('/photos/:id', [check('id').isNumeric()], async (req, res) => {
   const { id } = req.params
 
   try {
     validationResult(req).throw()
   } catch (err) {
+    // TODO look at using isEmpty() instead of two try/catch
     res.status(400).send(`Invalid URL parameter.`)
   }
 
@@ -39,7 +50,7 @@ router.get('/photo/:id', [check('id').isNumeric()], async (req, res) => {
   }
 })
 
-router.get('/randomPhoto/:group/:tag', (req, res) => {
+router.get('/photos/random/:group/:tag', (req, res) => {
   const { group, tag } = req.params
   db.getRandomPhotoByTag(group, tag)
     .then((photo) => {
@@ -53,19 +64,7 @@ router.get('/randomPhoto/:group/:tag', (req, res) => {
     })
 })
 
-router.get('/group/:group', (req, res) => {
-  const { group } = req.params
-  db.getGroupTags(group)
-    .then((data) => {
-      res.json(data)
-    })
-    .catch((err) => {
-      console.error(err.message)
-      res.status(500).send('Server error')
-    })
-})
-
-router.get('/photos/tag/:tag', (req, res) => {
+router.get('/tags/:tag/photos', (req, res) => {
   const { tag } = req.params
   const { sort, limit } = req.query
   db.getPhotosByTag(tag, sort, limit)
@@ -78,9 +77,9 @@ router.get('/photos/tag/:tag', (req, res) => {
     })
 })
 
-router.get('/photos/', (req, res) => {
-  const { sort, limit } = req.query
-  db.getPhotos(sort, limit)
+router.get('/groups/:group/tags', (req, res) => {
+  const { group } = req.params
+  db.getGroupTags(group)
     .then((data) => {
       res.json(data)
     })
