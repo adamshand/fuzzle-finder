@@ -32,7 +32,8 @@ function validateImage(filename) {
 
 async function insertImageMetadata(metadata) {
   const { filename, title, date, tags } = metadata
-  return await db('images').insert({ filename, title, date, tags })
+  const views = 0
+  return await db('images').insert({ filename, title, date, tags, views })
 }
 
 async function getExif(filename) {
