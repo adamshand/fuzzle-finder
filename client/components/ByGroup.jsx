@@ -31,9 +31,9 @@ function ByGroup() {
   }
 
   return (
-    <section>
+    <section className="byGroup">
       {groups[group]?.map((tag, i) => (
-        <figure className="byGroup" key={i}>
+        <figure key={i}>
           <Link to={`/tag/${tag}`}>
             <img
               src={`/api/v1/photos/random/${group}/${tag}`}

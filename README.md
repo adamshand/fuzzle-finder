@@ -24,7 +24,8 @@ Takes a folder full of cut animal photos and creates dynamic browsable, filterab
 ## Future Features
 
 - [ ] search photos by filename, title, and tag
-- [ ] use hash for photo id and duplicate detection
+- [ ] use hash for photo id - duplicate detection & persistant photos links
+- [ ] better lightbox for full size photo view
 - [ ] uploading new photos
 - [ ] add/edit/delete tags
 - [ ] automatically optimise photos (resize thumbnails)

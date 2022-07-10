@@ -50,15 +50,16 @@ div.sort > select {
 }
 section {
   display: grid;
+  grid-template-columns: repeat(auto-fill, var(--photoW));
+  grid-template-rows: masonry;
+  justify-content: center;
   column-gap: var(--colGap);
   row-gap: var(--colGap);
-  grid-template-columns: repeat(auto-fill, var(--photoW));
-  justify-content:center;
 }
 figure {
   position: relative;
   width: var(--photoW);
-  height: var(--photoW);
+  height: auto;
   padding: 5px;
   border: 2px solid var(--accent);
   border-bottom-left-radius: 8px;
@@ -70,9 +71,6 @@ img {
   object-fit: cover;
 }
 figcaption {
-  position: absolute;
-  right: 5px;
-  bottom: 2px;
   background-color: var(--dark);
   padding: .3em;
   width: calc(var(--photoW) - 13px);
@@ -91,8 +89,21 @@ a:hover, a:active {
 }
 
 /*** <ByGroup /> ***/
-figure.byGroup > figcaption {
+section.byGroup > figure {
+  position: relative;
+  height: var(--photoW);
+  margin-bottom: 7rem;
+  border-radius: 0;
+}
+section.byGroup figure > figcaption {
+  position: absolute;
+  bottom: -7rem;
+  border: 2px solid var(--accent);
+  border-radius: 8px;
   font-size: 2.7rem;
+}
+section.byGroup figure > figcaption:first-letter {
+  text-transform: capitalize;
 }
 
 /*** <Photo /> ***/
@@ -126,34 +137,23 @@ figcaption a.active {
 }
 
 /*** Only Firefox supports native masonry ***/
-@supports (grid-template-rows: masonry) {
-  section {
-    grid-template-rows: masonry;
-  }
+@supports not (grid-template-rows: masonry) {
   figure {
-    height: auto;  
-  }
+    height: calc(var(--photoW) * 1.33);
+   }
   figcaption {
-    /* display: none; */
-    position: relative;
-    right: 0;
-    bottom: 0;
+    position: absolute;
+    right: 5px;
+    bottom: 2px;
   }
 }
 
 /*** Small phones in portrait (single column) ***/
 @media only screen and (max-width: 460px) {
   nav {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
   }
-  section {
-    grid-template-columns: repeat(auto-fill, var(--photoWphone));
+  figure.photo > figcaption {
+    font-size: 1.8rem;
   }
-  figure {
-    width: var(--photoWphone);
-    height: var(--photoWphone);
-  }  
-  figcaption {
-    width: calc(var(--photoWphone) - 13px);
-  }
-} 
+}  

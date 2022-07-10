@@ -39,7 +39,7 @@ function ByTag() {
   }
 
   return (
-    <section>
+    <section className="byTag">
       {photos[tag]?.map((photo, i) => (
         <figure key={i}>
           <Link to={`/photo/${photo.id}`}>
