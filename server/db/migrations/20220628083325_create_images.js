@@ -3,12 +3,10 @@
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-  return knex.schema.createTable('images', (table) => {
-    table.increments('id')
-    table.string('filename')
+  return knex.schema.createTable('photos', (table) => {
+    table.string('id')
     table.date('date')
     table.string('title')
-    table.text('description')
     table.string('tags')
     table.boolean('starred')
     table.integer('views')
@@ -20,5 +18,5 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-  return knex.schema.dropTable('images')
+  return knex.schema.dropTable('photos')
 }

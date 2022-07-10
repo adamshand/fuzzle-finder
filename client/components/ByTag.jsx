@@ -44,7 +44,7 @@ function ByTag() {
         <figure key={i}>
           <Link to={`/photo/${photo.id}`}>
             <img
-              src={'/images/' + photo.filename}
+              src={`/images/${photo.id}.jpeg`}
               alt={photo.title}
               title={photo.title}
             />

@@ -1,5 +1,6 @@
 const exifr = require('exifr')
 const fs = require('fs/promises')
+const md5 = require('md5-file')
 
 const config = require('./knexfile').development
 const db = require('knex')(config)
@@ -12,7 +13,7 @@ async function main() {
     try {
       if (validateImage(filename)) {
         const metadata = await getExif(filename)
-        await insertImageMetadata(metadata)
+        await insertImageMetadata(metadata, filename)
       }
     } catch (err) {
       console.log(err)
@@ -30,10 +31,11 @@ function validateImage(filename) {
   return false
 }
 
-async function insertImageMetadata(metadata) {
-  const { filename, title, date, tags } = metadata
+async function insertImageMetadata(metadata, file) {
+  const { title, date, tags } = metadata
   const views = 0
-  return await db('images').insert({ filename, title, date, tags, views })
+  const id = await md5(`../public/images/${file}`)
+  return await db('photos').insert({ id, title, date, tags, views })
 }
 
 async function getExif(filename) {
@@ -60,7 +62,7 @@ async function getExif(filename) {
 }
 
 async function deleteAllDbData() {
-  return await db('images').del()
+  return await db('photos').del()
 }
 
 main().catch((e) => {

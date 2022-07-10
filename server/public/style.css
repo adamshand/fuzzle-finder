@@ -49,6 +49,7 @@ div.sort > select {
   font-size: 2rem;
 }
 section {
+  margin: 0 2vw;
   display: grid;
   grid-template-columns: repeat(auto-fill, var(--photoW));
   grid-template-rows: masonry;

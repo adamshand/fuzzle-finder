@@ -6,16 +6,6 @@ const path = require('path')
 
 const db = require('../db/db')
 
-// https://stackoverflow.com/questions/56386307/loading-of-a-resource-blocked-by-content-security-policy
-// res.header('Content-Security-Policy', 'img-src self')
-
-// API endpoints for refactor
-// GET /photos
-// GET /photos/random/group/tag
-// GET /photos/:id
-// GET /tags/:tag/photos
-// GET /groups/:group/tags
-
 // Base API Route: /api/v1
 
 router.get('/photos', (req, res) => {
@@ -30,15 +20,16 @@ router.get('/photos', (req, res) => {
     })
 })
 
-router.get('/photos/:id', [check('id').isNumeric()], async (req, res) => {
+// router.get('/photos/:id', [check('id').isNumeric()], async (req, res) => {
+router.get('/photos/:id', async (req, res) => {
   const { id } = req.params
 
-  try {
-    validationResult(req).throw()
-  } catch (err) {
-    // TODO look at using isEmpty() instead of two try/catch
-    res.status(400).send(`Invalid URL parameter.`)
-  }
+  // TODO look at using isEmpty() instead of two try/catch
+  // try {
+  //   validationResult(req).throw()
+  // } catch (err) {
+  //   res.status(400).send(`Invalid URL parameter.`)
+  // }
 
   try {
     await db.incrementPhotoCounter(id)
@@ -55,7 +46,7 @@ router.get('/photos/random/:group/:tag', (req, res) => {
   db.getRandomPhotoByTag(group, tag)
     .then((photo) => {
       res.sendFile(
-        path.join(__dirname, '../../server/public/images', photo.filename)
+        path.join(__dirname, '../../server/public/images', photo.id + '.jpeg')
       )
     })
     .catch((err) => {

@@ -24,13 +24,13 @@ Takes a folder full of cut animal photos and creates dynamic browsable, filterab
 ## Future Features
 
 - [ ] search photos by filename, title, and tag
+- [ ] use Redux for DB caching
 - [ ] use hash for photo id - duplicate detection & persistant photos links
 - [ ] better lightbox for full size photo view
 - [ ] uploading new photos
 - [ ] add/edit/delete tags
 - [ ] automatically optimise photos (resize thumbnails)
 - [ ] serve images cropped to arbitrary dimensions ([example](https://random.imagecdn.app/v1/docs))
-- [ ] create REST endpoints that follow best practice
 - [ ] create Docker image and deploy to server
 - [ ] add tests
 

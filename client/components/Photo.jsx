@@ -33,7 +33,7 @@ function Photo() {
 
   return (
     <figure className="photo">
-      <img src={'/images/' + photo.filename} alt={photo.title} />
+      <img src={`/images/${photo.id}.jpeg`} alt={photo.title} />
       <FigCaption tags={photo.tags} />
     </figure>
   )

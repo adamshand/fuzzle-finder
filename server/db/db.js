@@ -2,16 +2,16 @@ const config = require('./knexfile').development
 const connection = require('knex')(config)
 
 function incrementPhotoCounter(id, db = connection) {
-  return db('images').where('id', id).increment('views', 1)
+  return db('photos').where('id', id).increment('views', 1)
 }
 
 function getPhoto(id, db = connection) {
-  return db('images').select().where('id', id).first()
+  return db('photos').select().where('id', id).first()
 }
 
 function getRandomPhotoByTag(group, tag, db = connection) {
-  return db('images')
-    .select('filename')
+  return db('photos')
+    .select('id')
     .where('tags', 'like', `%${group}/${tag}%`)
     .orderByRaw('random()')
     .limit(1)
@@ -20,7 +20,7 @@ function getRandomPhotoByTag(group, tag, db = connection) {
 
 function getGroupTags(group, db = connection) {
   const regex = new RegExp(group + '/', 'gi')
-  return db('images')
+  return db('photos')
     .select('tags')
     .where('tags', 'like', `%${group}/%`)
     .orderByRaw('random()')
@@ -38,22 +38,22 @@ function getGroupTags(group, db = connection) {
 function getPhotosByTag(tag, sort = 'random', limit = 9999, db = connection) {
   switch (sort) {
     case 'views':
-      return db('images')
+      return db('photos')
         .where('tags', 'like', `%/${tag}%`)
         .orderBy('views', 'desc')
         .limit(limit)
     case 'date':
-      return db('images')
+      return db('photos')
         .where('tags', 'like', `%/${tag}%`)
         .orderBy('date', 'desc')
         .limit(limit)
     case 'rdate':
-      return db('images')
+      return db('photos')
         .where('tags', 'like', `%/${tag}%`)
         .orderBy('date', 'asc')
         .limit(limit)
     default:
-      return db('images')
+      return db('photos')
         .where('tags', 'like', `%/${tag}%`)
         .orderByRaw('random()')
         .limit(limit)
@@ -63,13 +63,13 @@ function getPhotosByTag(tag, sort = 'random', limit = 9999, db = connection) {
 function getPhotos(sort = 'random', limit = 9999, db = connection) {
   switch (sort) {
     case 'views':
-      return db('images').select().orderBy('views', 'desc').limit(limit)
+      return db('photos').select().orderBy('views', 'desc').limit(limit)
     case 'date':
-      return db('images').select().orderBy('date', 'desc').limit(limit)
+      return db('photos').select().orderBy('date', 'desc').limit(limit)
     case 'rdate':
-      return db('images').select().orderBy('date', 'asc').limit(limit)
+      return db('photos').select().orderBy('date', 'asc').limit(limit)
     default:
-      return db('images').select().orderByRaw('random()').limit(limit)
+      return db('photos').select().orderByRaw('random()').limit(limit)
   }
 }
 
