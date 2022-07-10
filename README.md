@@ -23,11 +23,13 @@ Takes a folder full of cut animal photos and creates dynamic browsable, filterab
 
 ## Future Features
 
+- [x] rename API endpoints to match best practice
+- [x] use md5 for photo id and use for persistant photo links
+- [ ] on group pages change thumbnails to link to persistant photo link
 - [ ] search photos by filename, title, and tag
 - [ ] use Redux for DB caching
-- [ ] use hash for photo id - duplicate detection & persistant photos links
 - [ ] better lightbox for full size photo view
-- [ ] uploading new photos
+- [ ] uploading new photos (use md5 id for duplicate detection)
 - [ ] add/edit/delete tags
 - [ ] automatically optimise photos (resize thumbnails)
 - [ ] serve images cropped to arbitrary dimensions ([example](https://random.imagecdn.app/v1/docs))
