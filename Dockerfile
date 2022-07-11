@@ -1,7 +1,8 @@
-# docker build -t ghcr.io/adamshand/fuzzler:latest¬ .
-#  or docker build -t fuzzler .
-#     docker tag 38f737a91f39 ghcr.io/adamshand/fuzzler:latest
-# echo $GHCR_PAT | docker login ghcr.io -u USERNAME --password-stdin
+# linux: docker build -t ghcr.io/adamshand/fuzzler:latest¬ .
+# macos: docker build --platform linux/amd64 -t ghcr.io/adamshand/fuzzler .
+#    or: docker build -t fuzzler .
+#        docker tag 38f737a91f39 ghcr.io/adamshand/fuzzler:latest
+# echo $GHCR_PAT | docker login ghcr.io -u adamshand --password-stdin
 # docker push ghcr.io/adamshand/fuzzler:latest
 # docker pull ghcr.io/adamshand/fuzzler
 
