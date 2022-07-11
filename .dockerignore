@@ -9,3 +9,4 @@ npm-debug.log
 server/db/seeds/
 server/public/screenshot.jpg
 server/public/fuzzler.pxm
+server/public/images
