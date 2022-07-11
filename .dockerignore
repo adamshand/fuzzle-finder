@@ -1,0 +1,10 @@
+._*
+*.test.js
+coverage/
+.git/
+node_modules/
+.gitignore
+npm-debug.log
+server/db/seeds/
+server/public/screenshot.jpg
+server/public/fuzzler.pxm
