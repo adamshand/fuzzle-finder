@@ -25,6 +25,7 @@ Takes a folder full of cut animal photos and creates dynamic browsable, filterab
 
 - [x] rename API endpoints to match best practice
 - [x] use md5 for photo id and use for persistant photo links
+- [x] create Docker image and deploy to server
 - [ ] on group pages change thumbnails to link to persistant photo link
 - [ ] search photos by filename, title, and tag
 - [ ] use Redux for DB caching
@@ -33,7 +34,6 @@ Takes a folder full of cut animal photos and creates dynamic browsable, filterab
 - [ ] add/edit/delete tags
 - [ ] automatically optimise photos (resize thumbnails)
 - [ ] serve images cropped to arbitrary dimensions ([example](https://random.imagecdn.app/v1/docs))
-- [ ] create Docker image and deploy to server
 - [ ] add tests
 
 ## Installation

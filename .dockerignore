@@ -1,9 +1,10 @@
 ._*
+.DS_*
 *.test.js
-coverage/
 .git/
-node_modules/
 .gitignore
+coverage/
+node_modules/
 npm-debug.log
 server/db/seeds/
 server/public/screenshot.jpg
