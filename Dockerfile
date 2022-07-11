@@ -5,7 +5,6 @@
 # docker push ghcr.io/adamshand/fuzzler:latest
 # docker pull ghcr.io/adamshand/fuzzler
 
->>>>>>> 4e2fd459359f631d501829ea1c5c5c50b2fc86f6
 FROM node:16-alpine
 WORKDIR /app
 COPY package*.json ./
