@@ -60,16 +60,33 @@ function getPhotosByTag(tag, sort = 'random', limit = 9999, db = connection) {
   }
 }
 
-function getPhotos(sort = 'random', limit = 9999, db = connection) {
+function getPhotos(
+  sort = 'random',
+  limit = 9999,
+  filter = '/', // all tags contain '/'
+  db = connection
+) {
   switch (sort) {
     case 'views':
-      return db('photos').select().orderBy('views', 'desc').limit(limit)
+      return db('photos')
+        .where('tags', 'like', `%${filter}%`)
+        .orderBy('views', 'desc')
+        .limit(limit)
     case 'date':
-      return db('photos').select().orderBy('date', 'desc').limit(limit)
+      return db('photos')
+        .where('tags', 'like', `%${filter}%`)
+        .orderBy('date', 'desc')
+        .limit(limit)
     case 'rdate':
-      return db('photos').select().orderBy('date', 'asc').limit(limit)
+      return db('photos')
+        .where('tags', 'like', `%${filter}%`)
+        .orderBy('date', 'asc')
+        .limit(limit)
     default:
-      return db('photos').select().orderByRaw('random()').limit(limit)
+      return db('photos')
+        .where('tags', 'like', `%${filter}%`)
+        .orderByRaw('random()')
+        .limit(limit)
   }
 }
 

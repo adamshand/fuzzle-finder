@@ -136,6 +136,16 @@ nav a.active {
 figcaption a.active {
   background-color: hsl(0, 0%, 30%);
 }
+/*** 404 Not Found ***/
+section.notFound {
+  display: flex;
+  justify-content: center;
+}
+section.notFound > img {
+  width: 1024px;
+  max-width: 70vw;
+  margin-top: 2rem;
+}
 
 /*** Only Firefox supports native masonry ***/
 @supports not (grid-template-rows: masonry) {

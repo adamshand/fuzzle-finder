@@ -9,7 +9,7 @@ server.use(express.json())
 
 server.use('/api/v1', photos)
 
-// server.use('/api/v1/*', (req, res) => res.sendStatus(404))
+server.use('/api/v1/*', (req, res) => res.sendStatus(404))
 server.get('*', (req, res) =>
   res.sendFile(path.join(__dirname, './public/index.html'))
 )

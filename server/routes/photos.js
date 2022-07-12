@@ -9,8 +9,8 @@ const db = require('../db/db')
 // Base API Route: /api/v1
 
 router.get('/photos', (req, res) => {
-  const { sort, limit } = req.query
-  db.getPhotos(sort, limit)
+  const { sort, limit, filter } = req.query
+  db.getPhotos(sort, limit, filter)
     .then((data) => {
       res.json(data)
     })
@@ -41,7 +41,7 @@ router.get('/photos/:id', async (req, res) => {
   }
 })
 
-router.get('/photos/random/:group/:tag', (req, res) => {
+router.get('/random/:group/:tag', (req, res) => {
   const { group, tag } = req.params
   db.getRandomPhotoByTag(group, tag)
     .then((photo) => {
@@ -55,18 +55,18 @@ router.get('/photos/random/:group/:tag', (req, res) => {
     })
 })
 
-router.get('/tags/:tag/photos', (req, res) => {
-  const { tag } = req.params
-  const { sort, limit } = req.query
-  db.getPhotosByTag(tag, sort, limit)
-    .then((data) => {
-      res.json(data)
-    })
-    .catch((err) => {
-      console.error(err.message)
-      res.status(500).send('Server error')
-    })
-})
+// router.get('/tags/:tag/photos', (req, res) => {
+//   const { tag } = req.params
+//   const { sort, limit } = req.query
+//   db.getPhotosByTag(tag, sort, limit)
+//     .then((data) => {
+//       res.json(data)
+//     })
+//     .catch((err) => {
+//       console.error(err.message)
+//       res.status(500).send('Server error')
+//     })
+// })
 
 router.get('/groups/:group/tags', (req, res) => {
   const { group } = req.params

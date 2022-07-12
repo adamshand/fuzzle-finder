@@ -3,6 +3,8 @@ import { Link, useParams } from 'react-router-dom'
 
 import request from 'superagent'
 
+import Thumbnail from './Thumbnail.jsx'
+
 function ByGroup() {
   const { group } = useParams()
   const [{ loading, failed, message, groups }, setGroups] = useState({
@@ -10,7 +12,14 @@ function ByGroup() {
     groups: {},
   })
 
-  useEffect(() => {
+  async function randomPhotoByGroupTag(grouptag) {
+    const photo = await request.get(`/api/v1/photos?filter=${grouptag}&limit=1`)
+    return photo.body[0]
+  }
+
+  useEffect(async () => {
+    // const photo = await request.get(`/api/v1/photos?filter=${grouptag}&limit=1`)
+
     return request
       .get(`/api/v1/groups/${group}/tags`)
       .then((res) => {
@@ -19,7 +28,6 @@ function ByGroup() {
       .catch((err) => {
         setGroups({ failed: true, message: err.message })
       })
-      .catch((err) => console.log(err))
   }, [group])
 
   if (loading) {
@@ -32,11 +40,13 @@ function ByGroup() {
 
   return (
     <section className="byGroup">
+      {console.log(groups[group])}
       {groups[group]?.map((tag, i) => (
         <figure key={i}>
+          {/* <Thumbnail photo={randomPhotoByGroupTag(`${group}/${tag}`)} /> */}
           <Link to={`/tag/${tag}`}>
             <img
-              src={`/api/v1/photos/random/${group}/${tag}`}
+              src={`/api/v1/random/${group}/${tag}`}
               alt={`${group}/${tag}`}
             />
           </Link>
