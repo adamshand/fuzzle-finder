@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { check, validationResult } = require('express-validator')
+// const { check, validationResult } = require('express-validator')
 
 const path = require('path')
 
@@ -9,8 +9,10 @@ const db = require('../db/db')
 // Base API Route: /api/v1
 
 router.get('/photos', (req, res) => {
-  const { sort, limit, filter } = req.query
-  db.getPhotos(sort, limit, filter)
+  // const { limit, search, sort, tag } = req.query
+  const { limit, search, sort } = req.query
+  // db.getPhotos(limit, search, sort, tag)
+  db.getPhotos(limit, search, sort)
     .then((data) => {
       res.json(data)
     })
@@ -86,3 +88,33 @@ router.get('/ping(/:msg)?', (req, res) => {
 })
 
 module.exports = router
+
+// router.get('/searches', (req, res) => {
+// possible restful endpoint fo saved searches
+// })
+
+// still messing with endpoints
+//
+// /groups              all groups
+// /tags/:group         all tags with :group (or /groups/:group)
+// /photos              all photos
+// /photos?tag=:tag     all photos with tag xxx
+// /photos?limit=3      first three photos
+// /photos?sort=random  orders photos randomly
+// /photos?search=:str  all photos with tag or title containing :str
+// /photos/:id          photo with :id
+
+// /garages
+//   Returns list of garages (think JSON array here)
+// /garages/yyy
+//   Returns specific garage
+// /garage/yyy/cars
+//   Returns list of cars in garage
+// /garages/cars
+//   Returns list of all cars in all garages (may not be practical of course)
+// /cars
+//   Returns list of all cars
+// /cars/xxx
+//   Returns specific car
+// /cars/colors
+//   Returns lists of all posible colors for cars

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import request from 'superagent'
@@ -11,7 +11,7 @@ function ByTag() {
   const { tag } = useParams()
   const [{ loading, failed, message, photos }, setPhotos] = useState({
     loading: true,
-    photos: {},
+    photos: '',
   })
 
   const { order } = useSelector((state) => state.sort)
@@ -42,6 +42,7 @@ function ByTag() {
 
   return (
     <section className="byTag">
+      {console.log(photos[tag])}
       {photos[tag]?.map((photo, i) => (
         <figure key={i}>
           <Thumbnail photo={photo} />

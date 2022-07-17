@@ -33,6 +33,9 @@ function Photo() {
 
   return (
     <figure className="photo">
+      <a href={`/edit/${photo.id}`}>
+        <img alt="edit icon" src="/edit.png" />
+      </a>
       <img src={`/images/${photo.id}.jpeg`} alt={photo.title} />
       <FigCaption tags={photo.tags} />
     </figure>

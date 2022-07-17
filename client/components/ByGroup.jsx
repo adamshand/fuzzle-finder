@@ -40,7 +40,6 @@ function ByGroup() {
 
   return (
     <section className="byGroup">
-      {console.log(groups[group])}
       {groups[group]?.map((tag, i) => (
         <figure key={i}>
           {/* <Thumbnail photo={randomPhotoByGroupTag(`${group}/${tag}`)} /> */}

@@ -4,6 +4,7 @@ import { Routes, Route, NavLink } from 'react-router-dom'
 import ByTag from './ByTag.jsx'
 import ByGroup from './ByGroup.jsx'
 import LightBox from './LightBox.jsx'
+import Edit from './Edit.jsx'
 import Sort from './Sort.jsx'
 import NotFound from './NotFound.jsx'
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/tag/:tag" element={<ByTag />} />
         <Route path="/group/:group" element={<ByGroup />} />
         <Route path="/photo/:id" element={<LightBox />} />
+        <Route path="/edit/:id" element={<Edit />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </main>
