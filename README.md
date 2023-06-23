@@ -1,6 +1,6 @@
 # The Fuzzler
 
-Takes a folder full of cut animal photos and creates dynamic browsable, filterable, and sortable galleries.
+Takes a folder full of cute animal photos and creates dynamic browsable, filterable, and sortable galleries.
 
 ![screenshot](server/public/screenshot.jpg)
 
